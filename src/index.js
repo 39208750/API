@@ -4,11 +4,12 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import Home from "./components/home/home"
+import Validator from "./components/Validator/Validator"
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
     <BrowserRouter>
-        < Home />
+        < Validator />
     </BrowserRouter>,
     document.getElementById("root")
 );
