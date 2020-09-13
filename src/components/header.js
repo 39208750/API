@@ -5,7 +5,7 @@ export default class home extends Component {
     user = "login.user.name"
     render() {
         return (
-            <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+            <nav className="navbar navbar-expand-lg navbar-light">
             <div className="container">
               <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <div>

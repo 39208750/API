@@ -24,6 +24,16 @@
   color: white;
 }
 
+.marginTop20 {
+  margin-top:20px;
+}
+
+.dataTable {
+  margin-left: 30px;
+  margin-right: 30px;
+
+}
+
 .padding {
   padding:20px;
 }
@@ -35,7 +45,11 @@
 .inlineDisplay {
   display: inline;
 }
+.centerContent {
+  align-self: center;
+  justify-content: center;
 
+}
 .centerComponent {
   position: absolute; 
   left: 50%; 
