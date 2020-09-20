@@ -7,6 +7,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { Button } from 'react-bootstrap';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+
 class TableData extends Component {
     constructor(props) {
         super(props);
@@ -15,7 +19,13 @@ class TableData extends Component {
             rows: props.rows
         }
     }
-
+    updateState(rows) {
+        this.setState(
+            {
+                rows: rows
+            }
+        )
+    }
     render() {
         return (
             <TableContainer component={Paper} className="centerContent dataTable">
@@ -29,10 +39,14 @@ class TableData extends Component {
                     </TableHead>
                     <TableBody>
                         {this.state.rows.map((row) => (
-                            <TableRow key={row.name}> 
+                            <TableRow key={row.name}>
                                 <TableCell align="center">{row.val1}</TableCell>
                                 <TableCell align="center">{row.val2}</TableCell>
-                                <TableCell align="center">{row.val3}</TableCell>
+                                <TableCell align="center">
+                                    <Link to="/Form" params={{ encuesta: row.val1, empresa: row.val2 }}>
+                                        <Button variant="primary">Visualizar</Button>
+                                    </Link>
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

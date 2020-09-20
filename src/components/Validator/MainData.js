@@ -26,7 +26,6 @@ class MainData extends Component {
                                 <b>Empresa:</b> {this.props.empresaName}
                             </li>
                         </ul>
-
                     </div>
                 </div>
             </nav>

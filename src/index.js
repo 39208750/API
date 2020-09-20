@@ -9,7 +9,7 @@ import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
     <BrowserRouter>
-        < Validator />
+        < App />
     </BrowserRouter>,
     document.getElementById("root")
 );

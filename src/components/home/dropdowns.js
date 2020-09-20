@@ -12,13 +12,16 @@ class Dropdown extends Component {
             label: props.label
         }
     }
-
+    onChangeValue(data) {
+        this.props.onChangeValue(data)
+    }
     render() {
         return (
             <Autocomplete
-                options = {this.state.data}
+                options={this.state.data}
                 id="debug"
-                renderInput={(params) => <TextField {...params} label={this.state.label}  />}
+                onChange={(event, value) => this.onChangeValue(value)}
+                renderInput={(params) => <TextField {...params} label={this.state.label} />}
             />
 
         );

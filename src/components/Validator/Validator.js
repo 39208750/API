@@ -7,31 +7,58 @@ import FormContainer from './FormContainer'
 
 
 class Validator extends Component {
-    empresaName = 'UADE'
-    encuestaName = 'La Profe'
-    formData = [
-        {
-            quetion: 'Pregunta1',
-            answer: 'Respuesta1',
-            comment: 'Comentario1'
-        },
-        {
-            quetion: 'Pregunta2',
-            answer: 'Respuesta2',
-            comment: 'Comentario2'
+    constructor(props) {
+        super(props);
+        this.state = {
+            formData: [
+                {
+                    answer: {
+                        EsCompleja: true,
+                        label: "Testing",
+                    },
+                    question: "Test",
+                    comment: "Test"
+                },
+                {
+                    answer: {
+                        EsCompleja: false,
+                        label: "Testing",
+                        options: [
+                            {
+                                selected: true,
+                                label: "testing1"
+                            },
+                            {
+                                selected: false,
+                                label: "testing1"
+                            },
+                            {
+                                selected: false,
+                                label: "testing1"
+                            }
+                        ]
+                    },
+                    question: "Test",
+                    comment: "Test"
+                }
+            ]
         }
-    ]
+    }
+
     render() {
         return (
-            <Router>
+            <div>
                 <div>
-                    <Header />
+                    <Header login={false} />
                 </div>
                 <div>
-                    <MainData empresaName={this.empresaName} encuestaName={this.encuestaName} />
-                    <FormContainer formData= {this.formData}/>
+                    <MainData empresaName={this.props.empresa} encuestaName={this.props.encuesta} />
+
                 </div>
-            </Router >
+                <div>
+                    <FormContainer formData={this.state.formData} />
+                </div>
+            </div>
         );
     }
 }
