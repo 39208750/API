@@ -12,34 +12,54 @@ class Validator extends Component {
         this.state = {
             formData: [
                 {
-                    answer: {
-                        EsCompleja: true,
-                        label: "Testing",
-                    },
+                    type: 1,
+                    answer: [
+                        {
+                            label: "Testing",
+                            comment: ["Test", "Test2"]
+                        },
+                        {
+                            label: "Testing 2",
+                            comment: ["Test"]
+                        }
+                    ],
                     question: "Test",
-                    comment: "Test"
+
                 },
                 {
-                    answer: {
-                        EsCompleja: false,
-                        label: "Testing",
-                        options: [
-                            {
-                                selected: true,
-                                label: "testing1"
-                            },
-                            {
-                                selected: false,
-                                label: "testing1"
-                            },
-                            {
-                                selected: false,
-                                label: "testing1"
-                            }
-                        ]
-                    },
+                    type: 2,
+                    answer: [
+                        {
+                            options: [
+                                {
+                                    selected: true,
+                                    label: "testing1"
+                                },
+                                {
+                                    selected: false,
+                                    label: "testing1"
+                                },
+                                {
+                                    selected: false,
+                                    label: "testing1"
+                                }
+                            ],
+                            comment: "Test"
+
+                        }
+                    ],
                     question: "Test",
-                    comment: "Test"
+                },
+                {
+                    type: 3,
+                    answer: [
+                        {
+                            path: "/hola",
+                            comment: ["Test"]
+
+                        }
+                    ],
+                    question: "Test",
                 }
             ]
         }

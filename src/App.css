@@ -45,7 +45,6 @@
 .input {
   width: 100%;
   padding: 12px 20px;
-  margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -67,6 +66,11 @@
 
 }
 
+.labelForm {
+  margin-bottom: 0;
+  margin-top: 10px
+}
+
 .inlineDisplay {
   display: inline;
 }
@@ -84,7 +88,7 @@
 
 .inputForm {
   border-radius: 5px;
-  padding: 20px;
+  padding: 10px;
   margin: 20px;
   border-style: solid;
   background-color: white
@@ -92,6 +96,11 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.validatorButton {
+  margin-top: 10px;
+  border-radius: 20px;
 }
 
 @keyframes App-logo-spin {

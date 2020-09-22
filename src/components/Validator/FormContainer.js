@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Fab from '@material-ui/core/Fab';
+import EditIcon from '@material-ui/icons/Edit';
+import MessageRoundedIcon from '@material-ui/icons/MessageRounded';
+import AnswerInput from './AnswerInput'
 
 class FormContainer extends Component {
+    // classes = useStyles();
+
     constructor(props) {
         super(props);
         this.state = {
@@ -11,42 +18,49 @@ class FormContainer extends Component {
         return (
             <div>
                 {this.state.formData.map((data, index) => {
-                    let form = renderForm(data);
-                    {return(form)}
+                    let form = renderForm(data, index);
+                    { return (form) }
                 })}
             </div>
         );
     }
 }
 
-function renderForm(data) {
-    if (data.answer.EsCompleja) {
-        return (
-            <div className="inputForm">
-                <label for="pregunta">Pregunta</label>
-                <input type="text" value={data.question} name="lname" disabled className="input"/>
-                <label for="respuesta">Respuesta</label>
-                <input type="text" value={data.answer.label} name="lname" disabled className="input"/>
-                <label for="comentario">Comentario</label>
-                <input type="text" value={data.question} name="lname" disabled className="input"/>
+function renderForm(data, index) {
+    console.log(data)
+    console.log(data)
+    return (
+        <div className="inputForm">
+            <label for="pregunta" className="labelForm">Pregunta</label>
+            <input type="text" value={data.question} name="lname" disabled className="input" />
 
+            <AnswerInput answer={data.answer}  user="Validator" type={data.type}/>
+            <div>
+
+                {/* {data.answer.map((data, index) => {
+
+                    {
+                        return (
+                            <div key={index}>
+                                <input type="text" value={data.question} name="lname" className="input" value={data} />
+                            </div>
+                        )
+                    }
+                })} */}
             </div>
-        );
-    } else {
-
-        return (
-
-            <div  className="inputForm">
-                <label for="pregunta">Pregunta</label>
-                <input type="text" value={data.question} name="lname" disabled className="input"/>
-                <label for="respuesta">Respuesta</label>
-                <input type="text" value={data.answer.label} name="lname" disabled className="input"/>
-                <label for="comentario">Comentario</label>
-                <input type="text" value={data.question} name="lname" disabled className="input"/>
-
+            <div className="row">
+                <div className="col-lg-12">
+                    <button type="submit" className="btn btn-primary validatorButton" style={{ float: "right" }} >Comentar</button>
+                </div>
             </div>
-        );
-    }
+
+        </div>
+    );
+}
+
+
+
+function addComment() {
 
 }
 export default FormContainer;
