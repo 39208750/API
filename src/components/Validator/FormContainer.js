@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Fab from '@material-ui/core/Fab';
-import EditIcon from '@material-ui/icons/Edit';
-import MessageRoundedIcon from '@material-ui/icons/MessageRounded';
 import AnswerInput from './AnswerInput'
 
 class FormContainer extends Component {
@@ -27,8 +23,6 @@ class FormContainer extends Component {
 }
 
 function renderForm(data, index) {
-    console.log(data)
-    console.log(data)
     return (
         <div className="inputForm">
             <label for="pregunta" className="labelForm">Pregunta</label>

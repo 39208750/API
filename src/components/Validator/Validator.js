@@ -4,8 +4,6 @@ import Header from '../header'
 import MainData from './MainData'
 import FormContainer from './FormContainer'
 
-
-
 class Validator extends Component {
     constructor(props) {
         super(props);
@@ -66,6 +64,7 @@ class Validator extends Component {
     }
 
     render() {
+        console.log(this.props.match.params.empresa)
         return (
             <div>
                 <div>

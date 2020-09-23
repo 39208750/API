@@ -43,7 +43,7 @@ class TableData extends Component {
                                 <TableCell align="center">{row.val1}</TableCell>
                                 <TableCell align="center">{row.val2}</TableCell>
                                 <TableCell align="center">
-                                    <Link to="/Form" params={{ encuesta: row.val1, empresa: row.val2 }}>
+                                    <Link to="/Form" params={{ encuesta: "Hola", empresa: "Hola" }}>
                                         <Button variant="primary">Visualizar</Button>
                                     </Link>
                                 </TableCell>

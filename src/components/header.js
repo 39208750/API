@@ -13,14 +13,7 @@ export default class home extends Component {
             <div>
               <img src={Logo} alt="React Logo" />
             </div>
-            <ul className="navbar-nav ml-auto" style={{ display: this.props.login ? 'inline-flex' : 'none' }}>
-              <li className="nav-item">
-                <Link className="nav-link" to={"/"}>Login</Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
-              </li>
-            </ul>
+
             <ul className="navbar-nav ml-auto" style={{ display: !this.props.login ? 'inline-flex' : 'none' }}>
               <li className="nav-item">
                 <Link className="nav-link" to={"/Home"}>Home</Link>
