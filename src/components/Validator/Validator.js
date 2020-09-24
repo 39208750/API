@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router } from "react-router-dom";
 import Header from '../header'
 import MainData from './MainData'
 import FormContainer from './FormContainer'
@@ -31,19 +30,18 @@ class Validator extends Component {
                             options: [
                                 {
                                     selected: true,
-                                    label: "testing1"
+                                    label: "option 1"
                                 },
                                 {
                                     selected: false,
-                                    label: "testing1"
+                                    label: "option 2"
                                 },
                                 {
                                     selected: false,
-                                    label: "testing1"
+                                    label: "option 3"
                                 }
                             ],
-                            comment: "Test"
-
+                            comment: ["Comment 1", "Comment 2"]
                         }
                     ],
                     question: "Test",
@@ -70,10 +68,7 @@ class Validator extends Component {
                 <div>
                     <Header login={false} />
                 </div>
-                <div>
                     <MainData empresaName={this.props.empresa} encuestaName={this.props.encuesta} />
-
-                </div>
                 <div>
                     <FormContainer formData={this.state.formData} />
                 </div>

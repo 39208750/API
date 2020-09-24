@@ -28,13 +28,13 @@ class TableData extends Component {
     }
     render() {
         return (
-            <TableContainer component={Paper} className="centerContent dataTable">
+            <TableContainer component={Paper} className="centerContent col-md-8">
                 <Table aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="center">{this.state.cols[0]}</TableCell>
-                            <TableCell align="center">{this.state.cols[1]}</TableCell>
-                            <TableCell align="center">{this.state.cols[2]}</TableCell>
+                            <TableCell align="center"><b>{this.state.cols[0]}</b></TableCell>
+                            <TableCell align="center"><b>{this.state.cols[1]}</b></TableCell>
+                            <TableCell align="center"><b>{this.state.cols[2]}</b></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

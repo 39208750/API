@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { TextField, Checkbox, FormControl, FormLabel, FormGroup, FormControlLabel, Container } from '@material-ui/core';
 
 export default function AnswerInput(data) {
-    console.log(data)
     let disabled = data.user == 'Validator' ? 'none' : 'visible';
-
+    console.log("asdasdasdasdas");
+    console.log(data);
     return (
         <div>
             {(() => {
@@ -25,7 +26,6 @@ export default function AnswerInput(data) {
 }
 
 function renderFileType(data) {
-    console.log(data)
     return (
         <div>
             <form method="get" action={data.answer.path}>
@@ -35,30 +35,23 @@ function renderFileType(data) {
     )
 }
 
-function renderTextType(data, disabled) {
+function renderTextType(info, disabled) {
     return (
-        data.answer.map((data, index) => {
+        info.answer.answer.map((data, index) => {
             {
                 return (
-                    <div key={index} style={{ marginTop: 5 }}>
-                        <label for="respuesta" className="labelForm">Respuesta</label>
-
-                        <input type="text" value={data.label} name="lname" style={{ pointerEvents: disabled }} className="input" />
+                    <Container>
+                        <TextField label="Pregunta" defaultValue={info.question} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
+                        <TextField style={{ marginTop: 15 }} label="Respuesta" defaultValue={data.label} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
                         {
                             data.comment.map((comment, index) => {
 
                                 return (
-                                    <div key={index}>
-                                        <label for="comentario" className="labelForm" >Comentario</label>
-
-                                        <input type="text" value={comment} name="lname" className="input" />
-                                    </div>
+                                    <TextField style={{ marginTop: 15 }} label="Comentario" defaultValue={comment} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
                                 )
                             })
                         }
-                    </div>
-
-
+                    </Container>
                 )
             }
         })
@@ -67,43 +60,35 @@ function renderTextType(data, disabled) {
 
 function renderCheckboxType(data) {
     return (
-        data.answer.map((items, indexItems) => {
+        data.answer.answer.map((items, indexItems) => {
             return (
-                items.options.map((item, indexItem) => {
-                    return (
-                        <div>
-                            {(() => {
-                                if (item.selected) {
-                                    return (
-                                        <div className="row">
-                                            <div className="col-md-1">
-                                                <label for={indexItem}>{item.label}</label>
-                                            </div>
-
-                                            <div className="col-md-1">
-                                                <input type="checkbox" type="checkbox" checked disabled id={indexItem} />
-                                            </div>
-
-                                        </div>
-                                    )
-                                } else {
-                                    return (
-                                        <div className="row">
-                                            <div className="col-md-1">
-
-                                                <label for={indexItem}>{item.label}</label>
-                                            </div>
-
-                                            <div className="col-md-1">
-                                                <input type="checkbox" type="checkbox" disabled id={indexItem} />
-                                            </div>
-                                        </div>
-                                    )
-                                }
-                            })()}
-                        </div>
-                    )
-                })
+                <FormControl component="fieldset">
+                    <FormLabel style={{ marginTop: 15 }} component="legend">Respuesta</FormLabel>
+                    <FormGroup aria-label="position" row>
+                        {(() => {
+                            return (
+                                items.options.map((item, indexItem) => {
+                                    if (item.selected) {
+                                        return (
+                                            <FormControlLabel disabled checked value={item.label} control={<Checkbox color="primary" />} label={item.label} labelPlacement="left" />
+                                        )
+                                    } else {
+                                        return (
+                                            <FormControlLabel disabled value={item.label} control={<Checkbox color="primary" />} label={item.label} labelPlacement="left" />
+                                        )
+                                    }
+                                })
+                            )
+                        })()}
+                    </FormGroup>
+                    {
+                        items.comment.map((comment, index) => {
+                            return (
+                                <TextField style={{ marginTop: 15 }} label="Comentario" defaultValue={comment} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
+                            )
+                        })
+                    }
+                </FormControl>
             )
         })
     )

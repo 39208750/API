@@ -24,14 +24,9 @@
   color: white;
 }
 
-.marginTop20 {
+.marginTopBottom20 {
   margin-top:20px;
-}
-
-.dataTable {
-  margin-left: 30px;
-  margin-right: 30px;
-
+  margin-bottom:20px;
 }
 
 .padding {
@@ -42,15 +37,12 @@
   width:50%
 }
 
-.input {
+.textInput {
   width: 100%;
-  padding: 12px 20px;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  background-color: lightgray
+}
 
+.inputContainer {
+  padding: 10px;
 }
 
 .mainData {
@@ -60,10 +52,13 @@
   margin-right: 30px;
 }
 
+.title {
+  margin-top: 10px;
+}
+
 .link {
   margin-right: 20px;
   color: black
-
 }
 
 .labelForm {
@@ -74,11 +69,19 @@
 .inlineDisplay {
   display: inline;
 }
+
+.centerContentMainData {
+  align-self: center;
+  justify-content: center;
+  margin: auto;
+}
+
 .centerContent {
   align-self: center;
   justify-content: center;
-
 }
+
+
 .centerComponent {
   position: absolute; 
   left: 50%; 
@@ -87,10 +90,9 @@
 }
 
 .inputForm {
-  border-radius: 5px;
+  border-radius: 20px;
   padding: 10px;
   margin: 20px;
-  border-style: solid;
   background-color: white
 }
 

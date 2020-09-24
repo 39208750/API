@@ -108,7 +108,7 @@ class Home extends Component {
             login={false}
           />
         </div>
-        <div className="row centerContent marginTop20">
+        <div className="row centerContent marginTopBottom20">
           <div className="col-md-4">
             <Dropdown
               type="Empresa"
@@ -128,7 +128,7 @@ class Home extends Component {
           </div>
 
         </div>
-        <div className="row centerContent marginTop20">
+        <div className="row centerContent">
           <TableData
             ref={(table) => { this.HistoricTable = table }}
             cols={this.state.cols}
