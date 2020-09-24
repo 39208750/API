@@ -20,7 +20,7 @@ class Validator extends Component {
                             comment: ["Test"]
                         }
                     ],
-                    question: "Test",
+                    question: "Pregunta 1",
 
                 },
                 {

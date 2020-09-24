@@ -3,22 +3,25 @@ import AnswerInput from './AnswerInput'
 import { TextField, Container, Button, Grid } from '@material-ui/core';
 
 class FormContainer extends Component {
-    // classes = useStyles();
 
     constructor(props) {
         super(props);
+        this.myRef = React.createRef();
         this.state = {
             formData: props.formData,
+
         }
     }
     render() {
         return (
-            <div className="centerContentMainData col-md-8">
+            <Container className="centerContentMainData col-md-8">
                 {this.state.formData.map((data, index) => {
                     let form = renderForm(data, index);
                     { return (form) }
                 })}
-            </div>
+                <TextField id="filled-basic" label="Filled" variant="filled" className="inputText" />
+
+            </Container>
         );
     }
 }
@@ -28,9 +31,10 @@ function renderForm(data, index) {
         <Container className="inputForm">
             <Container className="inputContainer">
                 <AnswerInput answer={data} user="Validator" type={data.type} />
-                <Container className="row">
-                    <Grid container direction="row" justify="flex-end" alignItems="flex-end" style={{marginTop: 20}}>
-                        <Button variant="contained" color="primary">Comentar</Button>
+                <Container className="row" >
+                    
+                    <Grid container direction="row" justify="flex-end" alignItems="flex-end" style={{ marginTop: 20 }}>
+                        <Button variant="contained" color="primary" onClick={() => { prependData(this) }}>Comentar</Button>
                     </Grid>
                 </Container>
             </Container>
@@ -38,10 +42,11 @@ function renderForm(data, index) {
     );
 }
 
-
-
-function addComment() {
-
+function prependData(index) {
+    console.log(index.myRef.current)
+    // $("#"+index).append(<TextField style={{ marginTop: 15 }} label="Comentario"  InputProps={{ readOnly: true }} variant="outlined" className="textInput" />)
 }
+
+
 export default FormContainer;
 

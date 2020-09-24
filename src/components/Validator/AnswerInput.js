@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextField, Checkbox, FormControl, FormLabel, FormGroup, FormControlLabel, Container } from '@material-ui/core';
+import { TextField, Checkbox, FormControl, FormLabel, FormGroup, FormControlLabel, Container, Button } from '@material-ui/core';
 
 export default function AnswerInput(data) {
     let disabled = data.user == 'Validator' ? 'none' : 'visible';
@@ -26,12 +26,28 @@ export default function AnswerInput(data) {
 }
 
 function renderFileType(data) {
+    console.log(data)
     return (
-        <div>
-            <form method="get" action={data.answer.path}>
-                <button type="submit">Download!</button>
-            </form>
-        </div>
+        <Container>
+            <TextField style={{ marginTop: 15 }} label="Pregunta" defaultValue={data.answer.question} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
+            <FormControl component="fieldset">
+                <FormLabel style={{ marginTop: 15 }} component="legend">Respuesta</FormLabel>
+                <FormGroup aria-label="position" row>
+                    <Button style={{ marginTop: 15 }} color="secondary" variant="contained">Descargar</Button>
+                </FormGroup>
+            </FormControl>
+            {
+                data.answer.answer.map((info, index) => {
+                    return (
+                        info.comment.map((comment, index) => {
+                            return (
+                                <TextField style={{ marginTop: 15 }} label="Comentario" defaultValue={comment} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
+                            )
+                        })
+                    )
+                })
+            }
+        </Container>
     )
 }
 
@@ -41,7 +57,7 @@ function renderTextType(info, disabled) {
             {
                 return (
                     <Container>
-                        <TextField label="Pregunta" defaultValue={info.question} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
+                        <TextField style={{ marginTop: 15 }} label="Pregunta" defaultValue={info.answer.question} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
                         <TextField style={{ marginTop: 15 }} label="Respuesta" defaultValue={data.label} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
                         {
                             data.comment.map((comment, index) => {
@@ -62,33 +78,37 @@ function renderCheckboxType(data) {
     return (
         data.answer.answer.map((items, indexItems) => {
             return (
-                <FormControl component="fieldset">
-                    <FormLabel style={{ marginTop: 15 }} component="legend">Respuesta</FormLabel>
-                    <FormGroup aria-label="position" row>
-                        {(() => {
-                            return (
-                                items.options.map((item, indexItem) => {
-                                    if (item.selected) {
-                                        return (
-                                            <FormControlLabel disabled checked value={item.label} control={<Checkbox color="primary" />} label={item.label} labelPlacement="left" />
-                                        )
-                                    } else {
-                                        return (
-                                            <FormControlLabel disabled value={item.label} control={<Checkbox color="primary" />} label={item.label} labelPlacement="left" />
-                                        )
-                                    }
-                                })
-                            )
-                        })()}
-                    </FormGroup>
-                    {
-                        items.comment.map((comment, index) => {
-                            return (
-                                <TextField style={{ marginTop: 15 }} label="Comentario" defaultValue={comment} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
-                            )
-                        })
-                    }
-                </FormControl>
+                <Container>
+                    <TextField style={{ marginTop: 15 }} label="Pregunta" defaultValue={data.answer.question} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
+
+                    <FormControl component="fieldset">
+                        <FormLabel style={{ marginTop: 15 }} component="legend">Respuesta</FormLabel>
+                        <FormGroup aria-label="position" row>
+                            {(() => {
+                                return (
+                                    items.options.map((item, indexItem) => {
+                                        if (item.selected) {
+                                            return (
+                                                <FormControlLabel disabled checked value={item.label} control={<Checkbox color="primary" />} label={item.label} labelPlacement="left" />
+                                            )
+                                        } else {
+                                            return (
+                                                <FormControlLabel disabled value={item.label} control={<Checkbox color="primary" />} label={item.label} labelPlacement="left" />
+                                            )
+                                        }
+                                    })
+                                )
+                            })()}
+                        </FormGroup>
+                        {
+                            items.comment.map((comment, index) => {
+                                return (
+                                    <TextField style={{ marginTop: 15 }} label="Comentario" defaultValue={comment} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
+                                )
+                            })
+                        }
+                    </FormControl>
+                </Container>
             )
         })
     )

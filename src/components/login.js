@@ -7,7 +7,7 @@ export default class Login extends Component {
         return (
 
             <div>
-                <Header login ={true}/>
+                <Header login={true} />
                 <form>
                     <div className="centerComponent">
                         <div>
