@@ -6,7 +6,10 @@ export default function AnswerInput(data) {
     console.log("asdasdasdasdas");
     console.log(data);
     return (
-        <div>
+        <Container>
+            <Container>
+                <TextField style={{ marginTop: 15 }} label="Pregunta" defaultValue={data.answer.question} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
+            </Container>
             {(() => {
                 switch (data.type) {
                     case 1:
@@ -21,7 +24,7 @@ export default function AnswerInput(data) {
                 }
             })()}
 
-        </div>
+        </Container>
     )
 }
 
@@ -57,7 +60,6 @@ function renderTextType(info, disabled) {
             {
                 return (
                     <Container>
-                        <TextField style={{ marginTop: 15 }} label="Pregunta" defaultValue={info.answer.question} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
                         <TextField style={{ marginTop: 15 }} label="Respuesta" defaultValue={data.label} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
                         {
                             data.comment.map((comment, index) => {

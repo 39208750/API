@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AnswerInput from './AnswerInput'
-import { TextField, Container, Button, Grid } from '@material-ui/core';
+import { TextField, Container, Button, Grid,TextareaAutosize } from '@material-ui/core';
 
 class FormContainer extends Component {
 
@@ -19,8 +19,10 @@ class FormContainer extends Component {
                     let form = renderForm(data, index);
                     { return (form) }
                 })}
-                <TextField id="filled-basic" label="Filled" variant="filled" className="inputText" />
+                <Container className="centerContentMainData col-md-8 inputForm">
+                    <TextareaAutosize aria-label="empty textarea" placeholder="Comentario General" className="textInput" rowsMin={4}/>
 
+                </Container>
             </Container>
         );
     }
@@ -32,7 +34,7 @@ function renderForm(data, index) {
             <Container className="inputContainer">
                 <AnswerInput answer={data} user="Validator" type={data.type} />
                 <Container className="row" >
-                    
+
                     <Grid container direction="row" justify="flex-end" alignItems="flex-end" style={{ marginTop: 20 }}>
                         <Button variant="contained" color="primary" onClick={() => { prependData(this) }}>Comentar</Button>
                     </Grid>
