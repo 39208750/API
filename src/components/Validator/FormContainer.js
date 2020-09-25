@@ -10,7 +10,7 @@ class FormContainer extends Component {
         this.myRef = React.createRef();
         this.state = {
             formData: props.formData,
-
+            user: props.user
         }
     }
 
@@ -23,7 +23,7 @@ class FormContainer extends Component {
         return (
             <Container className="centerContentMainData col-md-8" style={{ maxWidth: 984 }}  >
                 {this.state.formData.map((data, index) => {
-                    let form = this.renderForm(data, index);
+                    let form = this.renderForm(data, index,this.state.user);
                     { return (form) }
                 })}
                 <TextareaAutosize aria-label="empty textarea" placeholder="Comentario General" className="textInput col-md-12 textArea" rowsMin={4} style={{ borderRadius: 20 }} />
@@ -49,17 +49,18 @@ class FormContainer extends Component {
             </Container>
         );
     }
-    renderForm(data, index) {
+    renderForm(data, index, user) {
         let container = [];
         return (
             <Container className="inputForm" disableGutters>
                 <TextField style={{ marginTop: 15 }} label="Pregunta" defaultValue={data.question} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
-
-                <AnswerInput answer={data} user="Validator" type={data.type} />
+                
+                <AnswerInput answer={data} user={user} type={data.type} />
                 <Container className="row" id={index} >
                     {container}
                 </Container>
-                <Grid container direction="row" justify="flex-end" alignItems="flex-end" style={{ marginTop: 20 }}>
+                {user.role == "Validator" ?(
+                <Grid container direction="row" justify="flex-end" alignItems="flex-end" style={{ marginTop: 20 }}> 
                     <Button
                         variant="contained"
                         color="secondary"
@@ -75,8 +76,28 @@ class FormContainer extends Component {
                         onClick={() => { prependData("comment-" + index, container) }}
                         className="formButton"
                         style={{ marginRight: 20, marginTop: -4, marginBottom: 4 }}
-                    >Comentar</Button>
+                    >Comentar</Button> 
                 </Grid>
+                ):(
+                    user.role == "Filler" ? (
+                    <Grid container direction="row" justify="flex-end" alignItems="flex-end" style={{ marginTop: 20 }}> 
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        id={"deleteAnswer-" + index}
+                        onClick={() => { prependData("deleteAnswer-" + index, container) }}
+                        className="formButton"
+                        style={{ marginRight: 20, marginTop: -4, marginBottom: 4, display: "none" }}
+                    >Eliminar</Button>
+                    <Button
+                        variant="contained"
+                        id={"addAnswer-" + index}
+                        color="primary"
+                        onClick={() => { prependData("addAnswer-" + index, container) }}
+                        className="formButton"
+                        style={{ marginRight: 20, marginTop: -4, marginBottom: 4 }}
+                    >Agregar Respuesta</Button> 
+                    </Grid>):(<div><h2>No posee permisos</h2></div>))}
             </Container>
         );
     }
@@ -101,7 +122,7 @@ function prependData(id, containerVariable) {
             container
         )
 
-    } else {
+    } else if(idValues[0] === "comment"){
         commentsAmount ++;
         document.getElementById(id).style.display = "none";
         document.getElementById('delete-' + idValues[1]).style.display = "block"
@@ -109,6 +130,32 @@ function prependData(id, containerVariable) {
         containerVariable.push(
             <Container>
                 <TextField style={{ marginTop: 15 }} label="Comentario" variant="outlined" className="textInput" />
+            </Container>
+        )
+        ReactDOM.render(
+            containerVariable,
+            container
+        )
+    }
+    else if(idValues[0] === "deleteAnswer"){
+        commentsAmount --;
+        document.getElementById(id).style.display = "none";
+        document.getElementById('addAnswer-' + idValues[1]).style.display = "block"
+        
+
+        ReactDOM.render(
+            "",
+            container
+        )        
+    }
+    else if(idValues[0] === "addAnswer"){
+        commentsAmount ++;
+        document.getElementById(id).style.display = "none";
+        document.getElementById('deleteAnswer-' + idValues[1]).style.display = "block"
+
+        containerVariable.push(
+            <Container>
+                <TextField style={{ marginTop: 15 }} label="Respuesta" variant="outlined" className="textInput" />
             </Container>
         )
         ReactDOM.render(

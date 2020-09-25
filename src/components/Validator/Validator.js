@@ -230,7 +230,10 @@ class Validator extends Component {
                         }
                     ],
                 }
-            ]
+            ],
+            user:{
+                role: "Filler"
+            }
         }
     }
 
@@ -243,7 +246,7 @@ class Validator extends Component {
                 </div>
                 <MainData empresaName={this.props.empresa} encuestaName={this.props.encuesta} />
                 <div>
-                    <FormContainer formData={this.state.formData} />
+                    <FormContainer formData={this.state.formData} user={this.state.user} />
                 </div>
             </div>
         );

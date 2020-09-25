@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { TextField, Checkbox, FormControl, FormLabel, FormGroup, FormControlLabel, Container, Button, Grid } from '@material-ui/core';
 
 export default function AnswerInput(data) {
-    let disabled = data.user == 'Validator' ? 'none' : 'visible';
+    let disabled = data.user == 'Validator' ? 'visible' : 'none';
+    console.log(disabled)
     return (
         <Container>
             {(() => {
                 switch (data.type) {
                     case 1:
-                        return (renderTextType(data, disabled))
+                        return (renderTextType(data))
                     case 2:
                         return (renderCheckboxType(data))
                     case 3:
