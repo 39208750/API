@@ -16,7 +16,7 @@ export default class home extends Component {
 
             <ul className="navbar-nav ml-auto" style={{ display: !this.props.login ? 'inline-flex' : 'none' }}>
               <li className="nav-item">
-                <Link className="nav-link" to={"/Home"}>Home</Link>
+                <Link className="nav-link" to={"/Home"}>Inicio</Link>
               </li>
             </ul>
           </div>

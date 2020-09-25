@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
-import { TextField, Checkbox, FormControl, FormLabel, FormGroup, FormControlLabel, Container, Button } from '@material-ui/core';
+import { TextField, Checkbox, FormControl, FormLabel, FormGroup, FormControlLabel, Container, Button, Grid } from '@material-ui/core';
 
 export default function AnswerInput(data) {
     let disabled = data.user == 'Validator' ? 'none' : 'visible';
-    console.log("asdasdasdasdas");
-    console.log(data);
     return (
         <Container>
-            <Container>
-                <TextField style={{ marginTop: 15 }} label="Pregunta" defaultValue={data.answer.question} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
-            </Container>
             {(() => {
                 switch (data.type) {
                     case 1:
@@ -32,11 +27,10 @@ function renderFileType(data) {
     console.log(data)
     return (
         <Container>
-            <TextField style={{ marginTop: 15 }} label="Pregunta" defaultValue={data.answer.question} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
-            <FormControl component="fieldset">
-                <FormLabel style={{ marginTop: 15 }} component="legend">Respuesta</FormLabel>
+            <FormControl component="fieldset" style={{ marginTop: 11 }}>
+                <FormLabel component="legend">Respuesta</FormLabel>
                 <FormGroup aria-label="position" row>
-                    <Button style={{ marginTop: 15 }} color="secondary" variant="contained">Descargar</Button>
+                    <Button style={{marginBottom:4}} color="secondary" variant="contained">Descargar</Button>
                 </FormGroup>
             </FormControl>
             {
@@ -50,12 +44,14 @@ function renderFileType(data) {
                     )
                 })
             }
+
         </Container>
     )
 }
 
 function renderTextType(info, disabled) {
     return (
+
         info.answer.answer.map((data, index) => {
             {
                 return (
@@ -69,7 +65,9 @@ function renderTextType(info, disabled) {
                                 )
                             })
                         }
+
                     </Container>
+
                 )
             }
         })
@@ -81,10 +79,9 @@ function renderCheckboxType(data) {
         data.answer.answer.map((items, indexItems) => {
             return (
                 <Container>
-                    <TextField style={{ marginTop: 15 }} label="Pregunta" defaultValue={data.answer.question} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
 
-                    <FormControl component="fieldset">
-                        <FormLabel style={{ marginTop: 15 }} component="legend">Respuesta</FormLabel>
+                    <FormControl component="fieldset" style={{ marginTop: 11, marginBottom:-13 }}>
+                        <FormLabel  component="legend">Respuesta</FormLabel>
                         <FormGroup aria-label="position" row>
                             {(() => {
                                 return (
@@ -102,14 +99,15 @@ function renderCheckboxType(data) {
                                 )
                             })()}
                         </FormGroup>
-                        {
-                            items.comment.map((comment, index) => {
-                                return (
-                                    <TextField style={{ marginTop: 15 }} label="Comentario" defaultValue={comment} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
-                                )
-                            })
-                        }
+
                     </FormControl>
+                    {
+                        items.comment.map((comment, index) => {
+                            return (
+                                <TextField style={{ marginTop: 15 }} label="Comentario" defaultValue={comment} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
+                            )
+                        })
+                    }
                 </Container>
             )
         })
@@ -117,4 +115,7 @@ function renderCheckboxType(data) {
 }
 
 
+function addComment(buttonData) {
+    console.log(buttonData)
+}
 

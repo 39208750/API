@@ -7,7 +7,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cols: ['Empresas', 'Encuesta', 'Action'],
+      cols: ['Empresa', 'Encuesta'],
       rows: [
         {
           val1: 'val1-1',

@@ -76,6 +76,17 @@
   justify-content: center;
   margin: auto;
 }
+.MuiContainer-root {
+  padding-left: 10px !important;
+  padding-right: 10px !important
+  
+};
+
+.formButton {
+  margin-right: 20px !important;
+  margin-top: -4px !important;
+  margin-bottom: 4px !important;
+}
 
 .centerContent {
   align-self: center;
@@ -96,6 +107,18 @@
   margin: 20px;
   background-color: white
 }
+
+.textArea {
+  border-radius: 20px;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: white
+}
+
+textarea::placeholder {
+  margin-top: 200px;
+}
+
 
 .App-link {
   color: #61dafb;

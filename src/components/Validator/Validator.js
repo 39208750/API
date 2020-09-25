@@ -10,52 +10,225 @@ class Validator extends Component {
             formData: [
                 {
                     type: 1,
+                    question: "En que año estamos?",
                     answer: [
                         {
-                            label: "Testing",
-                            comment: ["Test", "Test2"]
-                        },
-                        {
-                            label: "Testing 2",
-                            comment: ["Test"]
+                            label: "2020",
+                            comment: []
+
                         }
                     ],
-                    question: "Pregunta 1",
+                },
+                {
+                    type: 1,
+                    question: "En que mes estamos?",
+                    answer: [
+                        {
+                            label: "Diciembre",
+                            comment: []
 
+                        }
+                    ],
+                },
+                {
+                    type: 1,
+                    question: "Qué año fue el año pasado?",
+                    answer: [
+                        {
+                            label: "2020",
+                            comment: ["La respuesta no es correcta, revisar"]
+                        }
+                    ],
+                },
+                {
+                    type: 1,
+                    question: "Qué año será el año que viene?",
+                    answer: [
+                        {
+                            label: "2020",
+                            comment: ["La respuesta no es correcta, revisar", "Preste atención."]
+                        }
+                    ],
+                },
+                {
+                    type: 1,
+                    question: "Qué mes será el próximo mes?",
+                    answer: [
+                        {
+                            label: "Noviembre",
+                            comment: ["La respuesta no es correcta, revisar"]
+                        },
+                        {
+                            label: "Octubre",
+                            comment: []
+                        }
+                    ],
+                },
+                {
+                    type: 1,
+                    question: "Qué mes será el próximo mes?",
+                    answer: [
+                        {
+                            label: "Noviembre",
+                            comment: ["La respuesta no es correcta, revisar", "Preste atención."]
+                        },
+                        {
+                            label: "Octubre",
+                            comment: []
+                        }
+                    ],
+                },
+                {
+                    type: 1,
+                    question: "Qué mes será el próximo mes?",
+                    answer: [
+                        {
+                            label: "Noviembre",
+                            comment: ["La respuesta no es correcta, revisar", "Preste atención."]
+                        },
+                        {
+                            label: "Diciembre",
+                            comment: ["Tampoco es correcta esa respuesta"]
+                        },
+                        {
+                            label: "Octubre",
+                            comment: ["Tampoco es correcta esa respuesta"]
+                        }
+                    ],
                 },
                 {
                     type: 2,
+                    question: "De que color es el caballo blanco de San Martín?",
                     answer: [
                         {
                             options: [
                                 {
                                     selected: true,
-                                    label: "option 1"
+                                    label: "Blanco"
                                 },
                                 {
                                     selected: false,
-                                    label: "option 2"
+                                    label: "Negro"
                                 },
                                 {
                                     selected: false,
-                                    label: "option 3"
+                                    label: "Marrón"
                                 }
                             ],
-                            comment: ["Comment 1", "Comment 2"]
+                            comment: []
                         }
                     ],
-                    question: "Test",
+                },
+                {
+                    type: 2,
+                    question: "De que color es el caballo blanco de San Martín?",
+                    answer: [
+                        {
+                            options: [
+                                {
+                                    selected: false,
+                                    label: "Blanco"
+                                },
+                                {
+                                    selected: true,
+                                    label: "Negro"
+                                },
+                                {
+                                    selected: false,
+                                    label: "Marrón"
+                                }
+                            ],
+                            comment: ["El caballo no es Negro"]
+                        }
+                    ],
+                },
+                {
+                    type: 2,
+                    question: "De que color es el caballo blanco de San Martín?",
+                    answer: [
+                        {
+                            options: [
+                                {
+                                    selected: true,
+                                    label: "Blanco"
+                                },
+                                {
+                                    selected: true,
+                                    label: "Negro"
+                                },
+                                {
+                                    selected: false,
+                                    label: "Marrón"
+                                }
+                            ],
+                            comment: ["El caballo no es Negro", "El caballo solo tiene un color"]
+                        }
+                    ],
+                },
+                {
+                    type: 2,
+                    question: "De que color es el caballo blanco de San Martín?",
+                    answer: [
+                        {
+                            options: [
+                                {
+                                    selected: true,
+                                    label: "Blanco"
+                                },
+                                {
+                                    selected: true,
+                                    label: "Negro"
+                                },
+                                {
+                                    selected: false,
+                                    label: "Marrón"
+                                }
+                            ],
+                            comment: ["El caballo no es Negro", "El caballo solo tiene un color"]
+                        },
+                        {
+                            options: [
+                                {
+                                    selected: true,
+                                    label: "Blanco"
+                                },
+                                {
+                                    selected: false,
+                                    label: "Negro"
+                                },
+                                {
+                                    selected: false,
+                                    label: "Marrón"
+                                }
+                            ],
+                            comment: []
+                        }
+                    ],
                 },
                 {
                     type: 3,
+                    question: "Dibuje a San Martín.",
                     answer: [
                         {
-                            path: "/hola",
-                            comment: ["Test"]
-
+                            path: "www.google.com",
+                            comment: []
                         }
                     ],
-                    question: "Test",
+
+                },
+                {
+                    type: 3,
+                    question: "Dibuje a San Martín.",
+                    answer: [
+                        {
+                            path: "wqw.google.com",
+                            comment: ["La ruta es incorrecta"]
+                        },
+                        {
+                            path: "www.google.com",
+                            comment: []
+                        }
+                    ],
                 }
             ]
         }
@@ -68,7 +241,7 @@ class Validator extends Component {
                 <div>
                     <Header login={false} />
                 </div>
-                    <MainData empresaName={this.props.empresa} encuestaName={this.props.encuesta} />
+                <MainData empresaName={this.props.empresa} encuestaName={this.props.encuesta} />
                 <div>
                     <FormContainer formData={this.state.formData} />
                 </div>

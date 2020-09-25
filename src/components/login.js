@@ -14,30 +14,30 @@ export default class Login extends Component {
                             <div className="auth-wrapper">
                                 <div className="auth-inner">
                                     <div className="App">
-                                        <h3>Sign In</h3>
+                                        <h3>Iniciar Sesión</h3>
                                     </div>
                                     <div className="form-group">
-                                        <label>Email address</label>
-                                        <input type="email" className="form-control inlineDisplay" placeholder="Enter email" />
+                                        <label>Correo Electrónico</label>
+                                        <input type="email" className="form-control inlineDisplay" placeholder="Ingresar correo electrónico" />
                                     </div>
 
                                     <div className="form-group">
-                                        <label>Password</label>
-                                        <input type="password" className="form-control inlineDisplay" placeholder="Enter password" />
+                                        <label>Contraseña</label>
+                                        <input type="password" className="form-control inlineDisplay" placeholder="Ingresar contraseña" />
                                     </div>
 
                                     <div className="form-group text-right">
                                         <div className="custom-control custom-checkbox">
                                             <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                                            <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                                            <label className="custom-control-label" htmlFor="customCheck1">Recordarme</label>
                                         </div>
                                     </div>
                                     <div className="App">
                                         <Link to="/Home">
-                                            <button type="submit" className="btn btn-primary width50">Submit</button>
+                                            <button type="submit" className="btn btn-primary width50">Ingresar</button>
                                         </Link>
                                         <p className="forgot-password text-right">
-                                            Forgot <a href="#">password?</a>
+                                            <a href="#">Solicitar cuenta nueva</a>
                                         </p>
                                     </div>
                                 </div>
