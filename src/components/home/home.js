@@ -44,9 +44,6 @@ class Home extends Component {
     }
   }
 
-
-
-
   selectedValueEmpresa;
   selectedValueEncuesta;
   onChangeDropDownEmpresa(data) {
@@ -123,7 +120,6 @@ class Home extends Component {
               data={this.state.dataEncuesta}
               label="Buscar por Encuesta"
               onChangeValue={this.onChangeDropDownEncuesta.bind(this)}
-
             />
           </div>
 

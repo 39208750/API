@@ -3,7 +3,6 @@ import { TextField, Checkbox, FormControl, FormLabel, FormGroup, FormControlLabe
 
 export default function AnswerInput(data) {
     let disabled = data.user == 'Validator' ? 'visible' : 'none';
-    console.log(disabled)
     return (
         <Container>
             {(() => {
@@ -25,7 +24,6 @@ export default function AnswerInput(data) {
 }
 
 function renderFileType(data) {
-    console.log(data)
     return (
         <Container>
             <FormControl component="fieldset" style={{ marginTop: 11 }}>
