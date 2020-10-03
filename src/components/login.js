@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route,Link } from "react-router-dom";
 import Header from './header'
+import { useHistory } from 'react-router-dom';
 
 export default class Login extends Component {
 
@@ -13,7 +14,8 @@ export default class Login extends Component {
                 role: ""
             },
             email: "",
-            password: ""
+            password: "",
+            url:"",
         };
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -26,11 +28,37 @@ export default class Login extends Component {
         this.setState({ password: e.target.value });
     };
 
+    validateUser() {
+        let returnVal = false;
+        if (this.state.email === "Validador") {
+            let user = {
+                nombre: "Validador Nombre",
+                apellido: "Validador Apellido",
+                rol: "Validator"
+            };
+            this.setState({ user: user });
+            returnVal = true;
+        } else if (this.state.email === "Analista") {
+
+            let user = {
+                nombre: "Analista Nombre",
+                apellido: "Analista Apellido",
+                rol: "Filler"
+            };
+            this.setState({ user: user });
+            returnVal = true;
+        }
+
+        if(returnVal){
+            this.setState({ url: "/Home" });
+        }
+    }
+
     render() {
         return (
 
             <div>
-                <Header login={true} />
+                <Header login={true}/>
                 <form>
                     <div className="centerComponent">
                         <div>
@@ -68,10 +96,10 @@ export default class Login extends Component {
                                         </div>
                                     </div>
                                     <div className="App">
-                                        <Link to="/Home" params={{ user: this.state.user }}>
+                                        <Link to={{pathname:this.state.url, user:this.state.user}}>
                                             <button
                                                 type="submit"
-                                                onClick={() => { this.validateUser(this) }}
+                                                onClick={() => { this.validateUser(this) }}                                                
                                                 className="btn btn-primary width50">
                                                 Ingresar
                                             </button>
@@ -84,29 +112,8 @@ export default class Login extends Component {
                             </div>
                         </div>
                     </div>
-
                 </form>
             </div>
         );
-    }
-
-    validateUser(data) {
-
-        if (this.state.email === "a@a.com") {
-            let user = {
-                Nombre: "Validador Nombre",
-                Apellido: "Validador Apellido",
-                Rol: "Validator"
-            };
-            this.setState({ user: user });
-
-        } else if (this.state.email === "Analista") {
-            let user = {
-                Nombre: "Analista Nombre",
-                Apellido: "Analista Apellido",
-                Rol: "Filler"
-            };
-            this.setState({ user: user });
-        }
-    }
+    }    
 }

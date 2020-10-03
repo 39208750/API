@@ -230,23 +230,20 @@ class Validator extends Component {
                         }
                     ],
                 }
-            ],
-            user:{
-                role: "Filler"
-            }
+            ]            
         }
     }
 
     render() {
-        console.log(this.props.match.params.empresa)
+        const { user,encuesta,empresa } = this.props.location
         return (
             <div>
                 <div>
-                    <Header login={false} />
+                    <Header login={false} user={user} />
                 </div>
-                <MainData empresaName={this.props.empresa} encuestaName={this.props.encuesta} />
+                <MainData empresaName={empresa} encuestaName={encuesta} />
                 <div>
-                    <FormContainer formData={this.state.formData} user={this.state.user} />
+                    <FormContainer formData={this.state.formData} user={user} />
                 </div>
             </div>
         );

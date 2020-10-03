@@ -71,3 +71,12 @@ body, html, .App, #root, .auth-wrapper {
 .forgot-password a {
   color: #167bff;
 }
+
+.filter{
+  background-color: white;
+  border-radius: 15px;
+}
+
+.bottomMargin5{
+  margin-bottom: 5px;
+}

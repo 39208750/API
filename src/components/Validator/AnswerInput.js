@@ -25,7 +25,7 @@ export default function AnswerInput(data) {
 
 function renderFileType(data) {
     return (
-        <Container>
+        <Container key={data}>
             <FormControl component="fieldset" style={{ marginTop: 11 }}>
                 <FormLabel component="legend">Respuesta</FormLabel>
                 <FormGroup aria-label="position" row>
@@ -54,13 +54,13 @@ function renderTextType(info, disabled) {
         info.answer.answer.map((data, index) => {
             {
                 return (
-                    <Container>
+                    <Container key={index}>
                         <TextField style={{ marginTop: 15 }} label="Respuesta" defaultValue={data.label} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
                         {
                             data.comment.map((comment, index) => {
 
                                 return (
-                                    <TextField style={{ marginTop: 15 }} label="Comentario" defaultValue={comment} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
+                                    <TextField key={index} style={{ marginTop: 15 }} label="Comentario" defaultValue={comment} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
                                 )
                             })
                         }
@@ -77,7 +77,7 @@ function renderCheckboxType(data) {
     return (
         data.answer.answer.map((items, indexItems) => {
             return (
-                <Container>
+                <Container key={indexItems}>
 
                     <FormControl component="fieldset" style={{ marginTop: 11, marginBottom:-13 }}>
                         <FormLabel  component="legend">Respuesta</FormLabel>
@@ -87,11 +87,11 @@ function renderCheckboxType(data) {
                                     items.options.map((item, indexItem) => {
                                         if (item.selected) {
                                             return (
-                                                <FormControlLabel disabled checked value={item.label} control={<Checkbox color="primary" />} label={item.label} labelPlacement="left" />
+                                                <FormControlLabel key={indexItem} disabled checked value={item.label} control={<Checkbox color="primary" />} label={item.label} labelPlacement="end" />
                                             )
                                         } else {
                                             return (
-                                                <FormControlLabel disabled value={item.label} control={<Checkbox color="primary" />} label={item.label} labelPlacement="left" />
+                                                <FormControlLabel key={indexItem} disabled value={item.label} control={<Checkbox color="primary" />} label={item.label} labelPlacement="end" />
                                             )
                                         }
                                     })
@@ -103,7 +103,7 @@ function renderCheckboxType(data) {
                     {
                         items.comment.map((comment, index) => {
                             return (
-                                <TextField style={{ marginTop: 15 }} label="Comentario" defaultValue={comment} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
+                                <TextField key={index} style={{ marginTop: 15 }} label="Comentario" defaultValue={comment} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
                             )
                         })
                     }

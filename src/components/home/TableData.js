@@ -16,8 +16,10 @@ class TableData extends Component {
         super(props);
         this.state = {
             cols: props.cols,
-            rows: props.rows
+            rows: props.rows,
+            user:props.user
         }
+        
     }
     updateState(rows) {
         this.setState(
@@ -39,11 +41,11 @@ class TableData extends Component {
                     </TableHead>
                     <TableBody>
                         {this.state.rows.map((row) => (
-                            <TableRow key={row.name}>
-                                <TableCell align="center">{row.val1}</TableCell>
-                                <TableCell align="center">{row.val2}</TableCell>
+                            <TableRow key={row.Empresa+"-"+row.Encuesta}>
+                                <TableCell align="center">{row.Empresa}</TableCell>
+                                <TableCell align="center">{row.Encuesta}</TableCell>
                                 <TableCell align="center">
-                                    <Link to="/Form" params={{ encuesta: "Hola", empresa: "Hola" }}>
+                                    <Link to={{pathname:"/Form",user:this.state.user,encuesta:row.Encuesta, empresa:row.Empresa }}>
                                         <Button variant="primary">Visualizar</Button>
                                     </Link>
                                 </TableCell>

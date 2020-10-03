@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AnswerInput from './AnswerInput'
 import { TextField, Container, Button, Grid, TextareaAutosize } from '@material-ui/core';
 import ReactDOM from 'react-dom'
+import { Redirect } from "react-router-dom";
 
 let commentsAmount = 0;
 class FormContainer extends Component {
@@ -19,6 +20,9 @@ class FormContainer extends Component {
     }
 
     render() {
+        if(!this.state.user){
+            return(<Redirect to="/" />);
+        }
         let approveDisabled = this.validateApproveInForm();
         return (
             <Container className="centerContentMainData col-md-8" style={{ maxWidth: 984 }}  >
@@ -50,16 +54,16 @@ class FormContainer extends Component {
         );
     }
     renderForm(data, index, user) {
-        let container = [];
+        let container = [];        
         return (
-            <Container className="inputForm" disableGutters>
+            <Container className="inputForm" disableGutters key={index}>
                 <TextField style={{ marginTop: 15 }} label="Pregunta" defaultValue={data.question} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
                 
                 <AnswerInput answer={data} user={user} type={data.type} />
                 <Container className="row" id={index} >
                     {container}
                 </Container>
-                {user.role == "Validator" ?(
+                {user.rol == "Validator" ?(
                 <Grid container direction="row" justify="flex-end" alignItems="flex-end" style={{ marginTop: 20 }}> 
                     <Button
                         variant="contained"
@@ -78,8 +82,8 @@ class FormContainer extends Component {
                         style={{ marginRight: 20, marginTop: -4, marginBottom: 4 }}
                     >Comentar</Button> 
                 </Grid>
-                ):(
-                    user.role == "Filler" ? (
+                ):(                
+                    user.rol == "Filler" ? (
                     <Grid container direction="row" justify="flex-end" alignItems="flex-end" style={{ marginTop: 20 }}> 
                     <Button
                         variant="contained"
