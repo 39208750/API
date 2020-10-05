@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route,Link } from "react-router-dom";
+import { BrowserRouter as Router, Link} from "react-router-dom";
 import Header from './header'
 import { useHistory } from 'react-router-dom';
 
@@ -39,7 +39,6 @@ export default class Login extends Component {
             this.setState({ user: user });
             returnVal = true;
         } else if (this.state.email === "Analista") {
-
             let user = {
                 nombre: "Analista Nombre",
                 apellido: "Analista Apellido",
@@ -48,7 +47,6 @@ export default class Login extends Component {
             this.setState({ user: user });
             returnVal = true;
         }
-
         if(returnVal){
             this.setState({ url: "/Home" });
         }
@@ -56,7 +54,6 @@ export default class Login extends Component {
 
     render() {
         return (
-
             <div>
                 <Header login={true}/>
                 <form>
@@ -77,7 +74,6 @@ export default class Login extends Component {
                                             onChange={this.handleEmailChange}
                                         />
                                     </div>
-
                                     <div className="form-group">
                                         <label>Contraseña</label>
                                         <input
@@ -88,7 +84,6 @@ export default class Login extends Component {
                                             onChange={this.handlePasswordChange}
                                         />
                                     </div>
-
                                     <div className="form-group text-right">
                                         <div className="custom-control custom-checkbox">
                                             <input type="checkbox" className="custom-control-input" id="customCheck1" />

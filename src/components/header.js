@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Logo from "../images/logo.svg"
-import { BrowserRouter as Router, Switch, Route, Link, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
 export default class home extends Component {

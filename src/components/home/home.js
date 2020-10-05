@@ -22,11 +22,8 @@ class Home extends Component {
           Encuesta: 'val3-2',
         }
       ],
-      dataEmpresa: [
-
-      ],
-      dataEncuesta: [
-      ],
+      dataEmpresa: [],
+      dataEncuesta: [],
       rowsToShow: [
         {
           Empresa: 'val1-1',
@@ -41,9 +38,7 @@ class Home extends Component {
           Encuesta: 'val3-2',
         }
       ],   
-      
     }
-    
   }
 
   selectedValueEmpresa;
@@ -101,10 +96,7 @@ class Home extends Component {
     return (
       <div>
         <div>
-          <Header
-            login={false}
-            user={user}
-          />
+          <Header login={false} user={user}/>
         </div>
         <div className="row centerContent marginTopBottom20">     
           <div className="col-md-8 filter">
@@ -129,7 +121,6 @@ class Home extends Component {
           </div>  
         </div>
         <div className="row centerContent">
-          
           <TableData
             ref={(table) => { this.HistoricTable = table }}
             cols={this.state.cols}

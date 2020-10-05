@@ -23,7 +23,6 @@ class Dropdown extends Component {
                 onChange={(event, value) => this.onChangeValue(value)}
                 renderInput={(params) => <TextField {...params} label={this.state.label} />}
             />
-
         );
     }
 }

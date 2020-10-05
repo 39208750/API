@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { TextField, Checkbox, FormControl, FormLabel, FormGroup, FormControlLabel, Container, Button, Grid } from '@material-ui/core';
 
 export default function AnswerInput(data) {
@@ -7,15 +7,10 @@ export default function AnswerInput(data) {
         <Container>
             {(() => {
                 switch (data.type) {
-                    case 1:
-                        return (renderTextType(data))
-                    case 2:
-                        return (renderCheckboxType(data))
-                    case 3:
-                        return (renderFileType(data))
-
-                    default:
-                        return null;
+                    case 1:  return (renderTextType(data))
+                    case 2:  return (renderCheckboxType(data))
+                    case 3:  return (renderFileType(data))
+                    default: return null;
                 }
             })()}
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -8,7 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Button } from 'react-bootstrap';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Route, Link } from "react-router-dom";
 
 
 class TableData extends Component {
@@ -19,7 +18,6 @@ class TableData extends Component {
             rows: props.rows,
             user:props.user
         }
-        
     }
     updateState(rows) {
         this.setState(
@@ -57,6 +55,5 @@ class TableData extends Component {
         );
     }
 }
-
 
 export default TableData;
