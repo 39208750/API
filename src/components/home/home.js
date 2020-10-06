@@ -51,7 +51,6 @@ class Home extends Component {
   onChangeDropDownEncuesta(data) {
     this.selectedValueEncuesta = data;
     this.filterTable(this.selectedValueEncuesta, this.selectedValueEmpresa)
-
   }
 
   filterTable(encuestaData, empresaData) {
@@ -64,7 +63,6 @@ class Home extends Component {
     }
 
     for (var i = 0; i < this.state.rows.length; i++) {
-
       if (encuestaData != null && empresaData != null) {
         if (this.state.rows[i].Empresa == empresaData && this.state.rows[i].Encuesta == encuestaData) {
           this.state.rowsToShow.push(
@@ -87,12 +85,14 @@ class Home extends Component {
     }
     this.HistoricTable.updateState(this.state.rowsToShow);
   }
+
   render() {
     const { user } = this.props.location    
     for (var i = 0; i < this.state.rows.length; i++) {
       this.state.dataEmpresa.push(this.state.rows[i].Empresa)
       this.state.dataEncuesta.push(this.state.rows[i].Encuesta);
     }
+    
     return (
       <div>
         <div>
@@ -132,6 +132,5 @@ class Home extends Component {
     );
   }
 }
-
 
 export default Home;

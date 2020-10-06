@@ -14,7 +14,7 @@ class FormContainer extends Component {
             user: props.user
         }
     }
-    
+
     render() {
         if (!this.state.user) {
             return (<Redirect to="/" />);
@@ -25,7 +25,7 @@ class FormContainer extends Component {
                     let form = this.renderForm(data, index, this.state.user);
                     { return (form) }
                 })}
-                <TextareaAutosize aria-label="empty textarea" placeholder="Comentario General" className="textInput col-md-12 textArea" rowsMin={4} style={{ borderRadius: 20 }} />
+                {this.renderComment(this.state.user.rol)}
                 <Grid container direction="row" justify="flex-end" alignItems="flex-end" style={{ marginTop: 20, marginBottom: 20 }}>
                     <Button
                         variant="contained"
@@ -47,6 +47,7 @@ class FormContainer extends Component {
             </Container>
         );
     }
+
     renderForm(data, index, user) {
         let container = [];
         return (
@@ -91,7 +92,7 @@ class FormContainer extends Component {
                                     style={{ marginRight: 20, marginTop: -4, marginBottom: 4, display: "none" }}
                                 >
                                     Eliminar
-                    </Button>
+                                </Button>
                                 <Button
                                     variant="contained"
                                     id={"addAnswer-" + index}
@@ -101,10 +102,18 @@ class FormContainer extends Component {
                                     style={{ marginRight: 20, marginTop: -4, marginBottom: 4 }}
                                 >
                                     Agregar Respuesta
-                    </Button>
+                                </Button>
                             </Grid>) : (<div><h2>No posee permisos</h2></div>))}
             </Container>
         );
+    }
+
+    renderComment(rol) {
+        if (rol === "Validator") {
+            return (
+                <TextareaAutosize aria-label="empty textarea" placeholder="Comentario General" className="textInput col-md-12 textArea" rowsMin={4} style={{ borderRadius: 20 }} />
+            )
+        }
     }
 }
 

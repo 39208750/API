@@ -2,7 +2,6 @@ import React from 'react';
 import { TextField, Checkbox, FormControl, FormLabel, FormGroup, FormControlLabel, Container, Button, Grid } from '@material-ui/core';
 
 export default function AnswerInput(data) {
-    let disabled = data.user == 'Validator' ? 'visible' : 'none';
     return (
         <Container>
             {(() => {
@@ -43,9 +42,8 @@ function renderFileType(data) {
     )
 }
 
-function renderTextType(info, disabled) {
+function renderTextType(info) {
     return (
-
         info.answer.answer.map((data, index) => {
             {
                 return (
@@ -53,7 +51,6 @@ function renderTextType(info, disabled) {
                         <TextField style={{ marginTop: 15 }} label="Respuesta" defaultValue={data.label} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
                         {
                             data.comment.map((comment, index) => {
-
                                 return (
                                     <TextField key={index} style={{ marginTop: 15 }} label="Comentario" defaultValue={comment} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
                                 )
@@ -73,7 +70,6 @@ function renderCheckboxType(data) {
         data.answer.answer.map((items, indexItems) => {
             return (
                 <Container key={indexItems}>
-
                     <FormControl component="fieldset" style={{ marginTop: 11, marginBottom:-13 }}>
                         <FormLabel  component="legend">Respuesta</FormLabel>
                         <FormGroup aria-label="position" row>
@@ -107,9 +103,3 @@ function renderCheckboxType(data) {
         })
     )
 }
-
-
-function addComment(buttonData) {
-    console.log(buttonData)
-}
-
