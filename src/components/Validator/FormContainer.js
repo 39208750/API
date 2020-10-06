@@ -52,7 +52,8 @@ class FormContainer extends Component {
         let container = [];
         return (
             <Container className="inputForm" disableGutters key={index}>
-                <TextField style={{ marginTop: 15 }} label="Pregunta" defaultValue={data.question} InputProps={{ readOnly: true }} variant="outlined" className="textInput" />
+                <h4 style={{marginTop: 8, marginLeft: 18}}>{data.question}</h4>
+                {/* <TextField style={{ marginTop: 15 }} label="Pregunta" defaultValue={data.question} InputProps={{ readOnly: true }} variant="outlined" className="textInput" /> */}
                 <AnswerInput answer={data} user={user} type={data.type} />
                 <Container className="row" id={index} >
                     {container}
