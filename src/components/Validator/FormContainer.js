@@ -41,7 +41,7 @@ class FormContainer extends Component {
                         color="primary"
                         onClick={() => { prependData(this) }}
                         style={{ marginLeft: 20 }}>
-                        Aprobar
+                        Enviar Nuevas Respuestas
                     </Button>
                 </Grid>
             </Container>
