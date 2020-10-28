@@ -6,6 +6,7 @@ import Login from "./components/login";
 import SignUp from "./components/signup";
 import Home from "./components/home/home";
 import Form from "./components/Validator/Validator";
+import UserManaging from "./components/UserManaging/UserManaging";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Route exact path='/' component={Login} />
       <Route path="/Home" component={Home} />
       <Route path="/Form" component={Form} />
+      <Route path="/AdministrarUsuarios" component={UserManaging} />
     </Switch>
   </Router>
   );

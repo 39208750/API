@@ -16,6 +16,7 @@ export default class home extends Component {
     if(!this.state.user && !this.state.login){
       return(<Redirect to="/" />);
     }
+    
     return (
       <nav className="navbar navbar-expand-lg navbar-light">
         <div className="container">
@@ -27,6 +28,12 @@ export default class home extends Component {
               <li className="nav-item">
                 <Link className="nav-link" to={{pathname:"/Home",user:this.state.user}}>Inicio</Link>
               </li>
+              {this.state.user && this.state.user.rol === "Admin" ?
+              (
+                <li className="nav-item">
+                  <Link className="nav-link" to={{pathname:"/AdministrarUsuarios", user: this.state.user}}>Gestionar Usuarios</Link>
+                </li>
+              ) : (<p></p>)}
             </ul>
           </div>
         </div>

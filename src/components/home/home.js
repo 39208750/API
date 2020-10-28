@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Header from '../header'
 import Dropdown from './dropdowns'
 import TableData from './TableData'
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -92,7 +93,6 @@ class Home extends Component {
       this.state.dataEmpresa.push(this.state.rows[i].Empresa)
       this.state.dataEncuesta.push(this.state.rows[i].Encuesta);
     }
-    
     return (
       <div>
         <div>

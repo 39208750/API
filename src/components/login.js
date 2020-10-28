@@ -30,22 +30,38 @@ export default class Login extends Component {
 
     validateUser() {
         let returnVal = false;
-        if (this.state.email === "Validador") {
-            let user = {
-                nombre: "Validador Nombre",
-                apellido: "Validador Apellido",
-                rol: "Validator"
-            };
-            this.setState({ user: user });
-            returnVal = true;
-        } else if (this.state.email === "Analista") {
-            let user = {
-                nombre: "Analista Nombre",
-                apellido: "Analista Apellido",
-                rol: "Filler"
-            };
-            this.setState({ user: user });
-            returnVal = true;
+        switch(this.state.email) {
+            case "Validador": 
+                this.setState({
+                    user: {
+                        nombre: "Validador Nombre",
+                        apellido: "Validador Apellido",
+                        rol: "Validator"
+                    }
+                });
+                returnVal = true;
+            break;
+            case "Analista":
+
+                this.setState({ 
+                    user: {
+                        nombre: "Analista Nombre",
+                        apellido: "Analista Apellido",
+                        rol: "Filler"
+                    }
+                 });
+                returnVal = true;
+            break;
+            case "Admin":
+                this.setState({ 
+                    user: {
+                        nombre: "Admin Nombre",
+                        apellido: "Admin Apellido",
+                        rol: "Admin"
+                    }
+                 });
+                returnVal = true;
+            break;
         }
         if(returnVal){
             this.setState({ url: "/Home" });
