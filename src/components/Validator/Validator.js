@@ -226,7 +226,7 @@ class Validator extends Component {
                         },
                         {
                             path: "www.google.com",
-                            comment: []
+                            comment: ["a comment"]
                         }
                     ],
                 }

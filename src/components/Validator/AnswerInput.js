@@ -18,6 +18,7 @@ export default function AnswerInput(data) {
 }
 
 function renderFileType(data) {
+    
     return (
         <Container key={data}>
             <FormControl component="fieldset" style={{ marginTop: 11 }}>
