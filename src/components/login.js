@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Link} from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import Header from './header'
 import { useHistory } from 'react-router-dom';
-
+import axios from 'axios';
 export default class Login extends Component {
 
     constructor(props) {
@@ -15,7 +15,7 @@ export default class Login extends Component {
             },
             email: "",
             password: "",
-            url:"",
+            url: "",
         };
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -27,51 +27,31 @@ export default class Login extends Component {
     handlePasswordChange(e) {
         this.setState({ password: e.target.value });
     };
-
-    validateUser() {
-        let returnVal = false;
-        switch(this.state.email) {
-            case "Validador": 
-                this.setState({
-                    user: {
-                        nombre: "Validador Nombre",
-                        apellido: "Validador Apellido",
-                        rol: "Validator"
-                    }
-                });
-                returnVal = true;
-            break;
-            case "Analista":
-
-                this.setState({ 
-                    user: {
-                        nombre: "Analista Nombre",
-                        apellido: "Analista Apellido",
-                        rol: "Filler"
-                    }
-                 });
-                returnVal = true;
-            break;
-            case "Admin":
-                this.setState({ 
-                    user: {
-                        nombre: "Admin Nombre",
-                        apellido: "Admin Apellido",
-                        rol: "Admin"
-                    }
-                 });
-                returnVal = true;
-            break;
+    getUser() {
+        let body = {
+            "username": this.state.email,
+            "password": this.state.password
         }
-        if(returnVal){
-            this.setState({ url: "/Home" });
+        console.log('BODY', body)
+        axios.post('https://api-proyect.herokuapp.com/loginUser', body, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+                'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+            }
         }
+        ).then(response => {
+            console.log('RESPONSE', response.data.data.role)
+            this.props.history.push({
+                pathname: '/Home',
+                state: { user: response.data.data }
+              })
+        }).catch(err => alert('Username y Password Invalido'))
     }
-
     render() {
         return (
             <div>
-                <Header login={true}/>
+                <Header login={true} />
                 <form>
                     <div className="centerComponent">
                         <div>
@@ -107,10 +87,9 @@ export default class Login extends Component {
                                         </div>
                                     </div>
                                     <div className="App">
-                                        <Link to={{pathname:this.state.url, user:this.state.user}}>
+                                        <Link to={{ pathname: this.state.url, user: this.state.user }}>
                                             <button
-                                                type="submit"
-                                                onClick={() => { this.validateUser(this) }}                                                
+                                                onClick={() => { this.getUser() }}
                                                 className="btn btn-primary width50">
                                                 Ingresar
                                             </button>
@@ -126,5 +105,5 @@ export default class Login extends Component {
                 </form>
             </div>
         );
-    }    
+    }
 }

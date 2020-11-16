@@ -3,33 +3,15 @@ import UsersTable from './UsersTable.js'
 import Header from '../header'
 import Dropdown from '../home/dropdowns'
 import { Button } from 'react-bootstrap';
+import axios from 'axios';
 
 class UserManaging extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            cols: ['Email', 'Contraseña'],
-            rows: [
-                {
-                    Email: 'guidorusso95@gmail.com',
-                    Password: '12345678'
-                },
-                {
-                    Email: 'ortizalej@gmail.com',
-                    Password: '12345678'
-                }
-            ],
-            userData: [],
-            rowsToShow: [
-                {
-                    Email: 'guidorusso95@gmail.com',
-                    Password: '12345678'
-                },
-                {
-                    Email: 'ortizalej@gmail.com',
-                    Password: '12345678'
-                }
-            ]
+            cols: ['Email', 'Rol'],
+            rows: [],
+            rowsToShow: []
         }
     }
 
@@ -39,6 +21,24 @@ class UserManaging extends Component {
         this.filterTable(this.selectedValueEmail)
     }
 
+    getUsers() {
+
+        axios.get('https://api-proyect.herokuapp.com/getUsers', {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+                'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+            }
+        }
+        ).then(response => {
+            console.log('RESPONSE', response.data.data)
+            this.setState({
+                rows: response.data.data,
+                rowsToShow: response.data.data
+            })
+        }).catch(err => alert('Username y Password Invalido'))
+    }
+
     filterTable(usuarioData) {
         this.state.rowsToShow = [];
 
@@ -46,52 +46,42 @@ class UserManaging extends Component {
             this.state.rowsToShow = this.state.rows;
             this.HistoricTable.updateState(this.state.rowsToShow);
             return;
+        } else {
+            let filterUsers = this.state.rows.filter(item => item.username == usuarioData);
+            this.state.rowsToShow = filterUsers
         }
 
-        for (var i = 0; i < this.state.rows.length; i++) {
-            if (usuarioData != null) {
-                if (this.state.rows[i].Email == usuarioData) {
-                    this.state.rowsToShow.push(
-                        {
-                            Email: this.state.rows[i].Email,
-                            Password: this.state.rows[i].Password
-                        }
-                    )
-                }
-            } else {
-                if (this.state.rows[i].Email === usuarioData) {
-                    this.state.rowsToShow.push(
-                        {
-                            Email: this.state.rows[i].Email,
-                            Password: this.state.rows[i].Password
-                        }
-                    )
-                }
-            }
-        }
+
         this.HistoricTable.updateState(this.state.rowsToShow);
     }
 
-    showModal(type, email, password) {
+    showModal(type,user) {
         document.getElementById("modifyPanel").style.display = "block"
         document.getElementById("type").textContent = type
-        document.getElementById("email").value = email
-        document.getElementById("password").value = password
+        document.getElementById("email").value = user.username != null ? user.username : null
+        document.getElementById("password").value = user.password != null ? user.password : null
     }
 
-    validateUser() {
+    actionUser(type) {
+        console.log(type)
+        if(type == 'Agregar') {
+            
+        } else if(type == 'Modificar') {
+
+        }else if(type == 'Eliminar') {
+
+        }
         document.getElementById("modifyPanel").style.display = "none"
     }
 
     render() {
-        const { user } = this.props.location
-        for (var i = 0; i < this.state.rows.length; i++) {
-            this.state.userData.push(this.state.rows[i].Email)
+        if (this.state.rows.length == 0) {
+            this.getUsers()
         }
         return (
             <div>
                 <div>
-                    <Header login={false} user={user} />
+                    <Header login={false} user={null} />
                 </div>
                 <div className="row centerContent marginTopBottom20">
                     <div className="col-md-8 filter">
@@ -99,27 +89,28 @@ class UserManaging extends Component {
                             <div className="col-md-8 bottomMargin5">
                                 <Dropdown
                                     type="Email"
-                                    data={this.state.userData}
+                                    data={this.state.rows}
                                     label="Buscar por Email"
                                     onChangeValue={this.onChangeDropDownEmail.bind(this)}
                                 />
                             </div>
-                            <div className="col-md-4 pull-right" style={{marginTop: 10}}>
-                                <Button variant="primary" onClick={() => { this.showModal("Agregar", "", "") }}>Agregar Nuevo Usuario</Button>
+                            <div className="col-md-4 pull-right" style={{ marginTop: 10 }}>
+                                <Button variant="primary" onClick={() => { this.showModal("Agregar", {}) }}>Agregar Nuevo Usuario</Button>
                             </div>
                         </div>
                     </div>
-                </div>                
+                </div>
                 <div className="row centerContent">
                     <UsersTable
                         ref={(table) => { this.HistoricTable = table }}
                         cols={this.state.cols}
                         rows={this.state.rowsToShow}
-                        user={user}
+                        user={this.state.rows}
                         showModal={this.showModal}
                     />
                 </div>
-                <div id="modifyPanel" style={{ display: "none", marginTop: 18}}>
+                
+                <div id="modifyPanel" style={{ display: "none", marginTop: 18 }}>
                     <div className="auth-wrapper">
                         <div className="auth-inner">
                             <div className="form-group">
@@ -130,7 +121,7 @@ class UserManaging extends Component {
                                     className="form-control inlineDisplay"
                                     placeholder="Ingresar correo electrónico"
                                     value={this.state.email}
-                                    // onChange={this.handleEmailChange}
+                                // onChange={this.handleEmailChange}
                                 />
                             </div>
                             <div className="form-group">
@@ -141,14 +132,13 @@ class UserManaging extends Component {
                                     className="form-control inlineDisplay"
                                     placeholder="Ingresar contraseña"
                                     value={this.state.password}
-                                    // onChange={this.handlePasswordChange}
+                                // onChange={this.handlePasswordChange}
                                 />
                             </div>
                             <div className="App">
                                 <button
                                     id="type"
-                                    type="submit"
-                                    onClick={() => { this.validateUser(this) }}
+                                    onClick={() => { this.actionUser(document.getElementById("type").textContent) }}
                                     className="btn btn-primary width50">
                                 </button>
                             </div>

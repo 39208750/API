@@ -14,9 +14,8 @@ class UsersTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            cols: props.cols,
-            rows: props.rows,
-            user: props.user
+            cols: this.props.cols,
+            rows: this.props.rows
         }
     }
     updateState(rows) {
@@ -44,15 +43,15 @@ class UsersTable extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {this.state.rows.map((row) => (
-                            <TableRow key={row.Email}>
-                                <TableCell align="center">{row.Email}</TableCell>
-                                <TableCell align="center">{row.Password}</TableCell>
+                        {this.props.rows.map((row) => (
+                            <TableRow key={row.username}>
+                                <TableCell align="center">{row.username}</TableCell>
+                                <TableCell align="center" >{row.role}</TableCell>
                                 <TableCell align="right">
-                                    <Button variant="primary" onClick={() => { this.buttonActions("Modificar", row.Email, row.Password) }}>Modificar</Button>
+                                    <Button variant="primary" onClick={() => { this.buttonActions("Modificar", row) }}>Modificar</Button>
                                 </TableCell>
                                 <TableCell align="left">
-                                    <Button variant="danger" onClick={() => { this.buttonActions("Eliminar", row.Email, row.Password) }}>Eliminar</Button>
+                                    <Button variant="danger" onClick={() => { this.buttonActions("Eliminar", row) }}>Eliminar</Button>
                                 </TableCell>
                             </TableRow>
                         ))}

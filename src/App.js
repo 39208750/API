@@ -10,9 +10,10 @@ import UserManaging from "./components/UserManaging/UserManaging";
 
 
 function App() {
-  return (<Router>
+  return (
+  <Router>
     <Switch>
-      <Route exact path='/' component={Login} />
+      <Route exact path='/' component={UserManaging} />
       <Route path="/Home" component={Home} />
       <Route path="/Form" component={Form} />
       <Route path="/AdministrarUsuarios" component={UserManaging} />
