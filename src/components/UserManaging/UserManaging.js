@@ -61,15 +61,15 @@ class UserManaging extends Component {
         document.getElementById("type").textContent = type
         document.getElementById("email").value = user.username != null ? user.username : null
         document.getElementById("password").value = user.password != null ? user.password : null
-        if(type === "Eliminar") {
+        if (type === "Eliminar") {
             document.getElementById("password").disabled = true
             document.getElementById("email").disabled = true
 
-        } else if(type === "Modificar") {
+        } else if (type === "Modificar") {
             document.getElementById("password").disabled = false
             document.getElementById("email").disabled = true
 
-        } else if(type === "Agregar") {
+        } else if (type === "Agregar") {
             document.getElementById("password").disabled = false
             document.getElementById("email").disabled = false
 
@@ -83,7 +83,7 @@ class UserManaging extends Component {
         } else if (type == 'Modificar') {
             this.editUser()
         } else if (type == 'Eliminar') {
-
+            this.handleDelete()
         }
         document.getElementById("modifyPanel").style.display = "none"
     }
@@ -106,20 +106,31 @@ class UserManaging extends Component {
             }
         }
         ).then(response => {
-            console.log('RESPONSE', response)
-            let totalRows = this.state.rows.push(response.data.data)
-
+            console.log('RESPONSE', response.data.data)
+            let result = response.data.data;
+            let rowsState = this.state.rows;
+            rowsState.push(result)
             this.setState({
-                rows: totalRows
+                rows: rowsState
             })
 
         }).catch(err => alert('Username y Password Invalido'))
     }
-
+    handleDelete = () => {
+        let email = document.getElementById("email").value;
+        let user = this.state.rows.filter(item => item.username == email)[0];
+        var array = this.state.rows;
+        var index = array.indexOf(user)
+        if (index !== -1) {
+            array.splice(index, 1);
+            this.setState({ rows: array });
+        }
+        this.deleteUser(user)
+    }
     editUser() {
         let email = document.getElementById("email").value;
-        let user = this.state.rows.filter(item => item.username == email)[0]; 
-        console.log(user)       
+        let user = this.state.rows.filter(item => item.username == email)[0];
+        console.log(user)
         let password = document.getElementById("password").value
         user.password = password
         axios.post('https://api-proyect.herokuapp.com/updateUser', user, {
@@ -135,9 +146,9 @@ class UserManaging extends Component {
         }).catch(err => alert('Username y Password Invalido'))
     }
 
-    deleteUser() {
-
-        axios.get('https://api-proyect.herokuapp.com/getUsers', {
+    deleteUser(user) {
+        console.log(user)
+        axios.post('https://api-proyect.herokuapp.com/deleteUser', user, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
@@ -145,11 +156,7 @@ class UserManaging extends Component {
             }
         }
         ).then(response => {
-            console.log('RESPONSE', response.data.data)
-            this.setState({
-                rows: response.data.data,
-                rowsToShow: response.data.data
-            })
+            console.log('RESPONSE', response)
         }).catch(err => alert('Username y Password Invalido'))
     }
 
@@ -201,7 +208,7 @@ class UserManaging extends Component {
                                     className="form-control inlineDisplay"
                                     placeholder="Ingresar correo electrónico"
                                     value={this.state.email}
-                                    
+
                                 // onChange={this.handleEmailChange}
                                 />
                             </div>
