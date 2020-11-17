@@ -13,9 +13,6 @@ export default class home extends Component {
     };    
   }
   render() {    
-    if(!this.state.user && !this.state.login){
-      return(<Redirect to="/" />);
-    }
     
     return (
       <nav className="navbar navbar-expand-lg navbar-light">

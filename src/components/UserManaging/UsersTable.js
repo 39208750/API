@@ -26,8 +26,8 @@ class UsersTable extends Component {
         )
     }
 
-    buttonActions(type, email, password) {
-        this.props.showModal(type, email, password)
+    buttonActions(type, user) {
+        this.props.showModal(type,user,this)
     }
 
     render() {

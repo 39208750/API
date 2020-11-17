@@ -11,7 +11,8 @@ class UserManaging extends Component {
         this.state = {
             cols: ['Email', 'Rol'],
             rows: [],
-            rowsToShow: []
+            rowsToShow: [],
+            actualUser: {}
         }
     }
 
@@ -55,23 +56,101 @@ class UserManaging extends Component {
         this.HistoricTable.updateState(this.state.rowsToShow);
     }
 
-    showModal(type,user) {
+    showModal(type, user) {
         document.getElementById("modifyPanel").style.display = "block"
         document.getElementById("type").textContent = type
         document.getElementById("email").value = user.username != null ? user.username : null
         document.getElementById("password").value = user.password != null ? user.password : null
+        if(type === "Eliminar") {
+            document.getElementById("password").disabled = true
+            document.getElementById("email").disabled = true
+
+        } else if(type === "Modificar") {
+            document.getElementById("password").disabled = false
+            document.getElementById("email").disabled = true
+
+        } else if(type === "Agregar") {
+            document.getElementById("password").disabled = false
+            document.getElementById("email").disabled = false
+
+        }
     }
 
     actionUser(type) {
         console.log(type)
-        if(type == 'Agregar') {
-            
-        } else if(type == 'Modificar') {
-
-        }else if(type == 'Eliminar') {
+        if (type == 'Agregar') {
+            this.createUser()
+        } else if (type == 'Modificar') {
+            this.editUser()
+        } else if (type == 'Eliminar') {
 
         }
         document.getElementById("modifyPanel").style.display = "none"
+    }
+
+    createUser() {
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value
+        let body = {
+            "username": email,
+            "password": password,
+            "role": "Admin"
+        }
+
+
+        axios.post('https://api-proyect.herokuapp.com/createUser', body, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+                'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+            }
+        }
+        ).then(response => {
+            console.log('RESPONSE', response)
+            let totalRows = this.state.rows.push(response.data.data)
+
+            this.setState({
+                rows: totalRows
+            })
+
+        }).catch(err => alert('Username y Password Invalido'))
+    }
+
+    editUser() {
+        let email = document.getElementById("email").value;
+        let user = this.state.rows.filter(item => item.username == email)[0]; 
+        console.log(user)       
+        let password = document.getElementById("password").value
+        user.password = password
+        axios.post('https://api-proyect.herokuapp.com/updateUser', user, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+                'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+            }
+        }
+        ).then(response => {
+            console.log('RESPONSE', response.data.data)
+
+        }).catch(err => alert('Username y Password Invalido'))
+    }
+
+    deleteUser() {
+
+        axios.get('https://api-proyect.herokuapp.com/getUsers', {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+                'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+            }
+        }
+        ).then(response => {
+            console.log('RESPONSE', response.data.data)
+            this.setState({
+                rows: response.data.data,
+                rowsToShow: response.data.data
+            })
+        }).catch(err => alert('Username y Password Invalido'))
     }
 
     render() {
@@ -107,9 +186,10 @@ class UserManaging extends Component {
                         rows={this.state.rowsToShow}
                         user={this.state.rows}
                         showModal={this.showModal}
+                        {...this.state}
                     />
                 </div>
-                
+
                 <div id="modifyPanel" style={{ display: "none", marginTop: 18 }}>
                     <div className="auth-wrapper">
                         <div className="auth-inner">
@@ -121,6 +201,7 @@ class UserManaging extends Component {
                                     className="form-control inlineDisplay"
                                     placeholder="Ingresar correo electrónico"
                                     value={this.state.email}
+                                    
                                 // onChange={this.handleEmailChange}
                                 />
                             </div>
