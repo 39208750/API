@@ -9,9 +9,22 @@ class Home extends Component {
     super(props);
     this.state = {
       cols: ['Empresa', 'Encuesta'],
+      rows: [ /* Aca va el contenido de la tabla del home */
+        // {
+        //   Empresa: 'val1-1',
+        //   Encuesta: 'val1-2',
+        // },
+        // {
+        //   Empresa: 'val2-1',
+        //   Encuesta: 'val2-2',
+        // },
+        // {
+        //   Empresa: 'val3-1',
+        //   Encuesta: 'val3-2',
+        // }
+      ],
       dataEmpresa: [],
       dataEncuesta: [],
-      rows: [],
       rowsToShow: [],   
     }
   }
