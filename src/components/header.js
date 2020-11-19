@@ -12,7 +12,7 @@ export default class home extends Component {
       user:props.user
     };    
   }
-  render() {    
+  render() {     
     
     return (
       <nav className="navbar navbar-expand-lg navbar-light">

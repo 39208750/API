@@ -6,9 +6,11 @@ export default function AnswerInput(data) {
         <Container>
             {(() => {
                 switch (data.type) {
-                    case 1:  return (renderTextType(data))
-                    case 2:  return (renderCheckboxType(data))
-                    case 3:  return (renderFileType(data))
+                    case 1: return (renderTextType(data))
+                    case 2: return (renderCheckboxType(data))
+                    case 3: return (renderFileType(data))
+                    case 4: return (renderTextType(data))
+                    case 5: return (renderGroupedType(data))
                     default: return null;
                 }
             })()}
@@ -18,13 +20,13 @@ export default function AnswerInput(data) {
 }
 
 function renderFileType(data) {
-    
+
     return (
         <Container key={data}>
             <FormControl component="fieldset" style={{ marginTop: 11 }}>
                 <FormLabel component="legend">Respuesta</FormLabel>
                 <FormGroup aria-label="position" row>
-                    <Button style={{marginBottom:4}} color="secondary" variant="contained">Descargar</Button>
+                    <Button style={{ marginBottom: 4 }} color="secondary" variant="contained">Descargar</Button>
                 </FormGroup>
             </FormControl>
             {
@@ -66,13 +68,14 @@ function renderTextType(info) {
     )
 }
 
+
 function renderCheckboxType(data) {
     return (
         data.answer.answer.map((items, indexItems) => {
             return (
                 <Container key={indexItems}>
-                    <FormControl component="fieldset" style={{ marginTop: 11, marginBottom:-13 }}>
-                        <FormLabel  component="legend">Respuesta</FormLabel>
+                    <FormControl component="fieldset" style={{ marginTop: 11, marginBottom: -13 }}>
+                        <FormLabel component="legend">Respuesta</FormLabel>
                         <FormGroup aria-label="position" row>
                             {(() => {
                                 return (
@@ -99,6 +102,29 @@ function renderCheckboxType(data) {
                             )
                         })
                     }
+                </Container>
+            )
+        })
+    )
+}
+
+function renderGroupedType(data) {
+    console.log(data.answer.answer)
+    return (
+        data.answer.answer.map((item, index) => {
+            console.log(item)
+            return (
+                <Container>
+                    <TextField
+                        key={index}
+                        style={{ marginTop: 15 }}
+                        label={item.question}
+                        InputProps={{ readOnly: true }}
+                        variant="outlined"
+                        defaultValue={item.answer + (item.adornment == undefined ? "" : item.adornment)}
+                        className="textInput"
+                    />
+
                 </Container>
             )
         })

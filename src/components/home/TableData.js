@@ -26,6 +26,12 @@ class TableData extends Component {
             }
         )
     }
+    redirect(row) {
+        this.props.history.push({
+            pathname: '/Form',
+            state: { user: this.props.user, survey: row }
+          })
+    } 
     render() {
         return (
             <TableContainer component={Paper} className="centerContent col-md-8">
@@ -38,14 +44,12 @@ class TableData extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {this.state.rows.map((row) => (
-                            <TableRow key={row.Empresa+"-"+row.Encuesta}>
-                                <TableCell align="center">{row.Empresa}</TableCell>
-                                <TableCell align="center">{row.Encuesta}</TableCell>
+                        {this.props.rows.map((row) => (
+                            <TableRow key={row.company+"-"+row.name}>
+                                <TableCell align="center">{row.company}</TableCell>
+                                <TableCell align="center">{row.name}</TableCell>
                                 <TableCell align="center">
-                                    <Link to={{pathname:"/Form",user:this.state.user,encuesta:row.Encuesta, empresa:row.Empresa }}>
-                                        <Button variant="primary">Visualizar</Button>
-                                    </Link>
+                                        <Button variant="primary" onClick={() => { this.redirect(row) }}>Visualizar</Button>
                                 </TableCell>
                             </TableRow>
                         ))}

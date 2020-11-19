@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import UsersTable from './UsersTable.js'
 import Header from '../header'
 import Dropdown from '../home/dropdowns'
-import { Button } from 'react-bootstrap';
+import { Button, } from 'react-bootstrap';
 import axios from 'axios';
 
 class UserManaging extends Component {
@@ -91,10 +91,11 @@ class UserManaging extends Component {
     createUser() {
         let email = document.getElementById("email").value;
         let password = document.getElementById("password").value
+        let rol = document.getElementById("role").value
         let body = {
             "username": email,
             "password": password,
-            "role": "Admin"
+            "role": rol
         }
 
 
@@ -132,6 +133,8 @@ class UserManaging extends Component {
         let user = this.state.rows.filter(item => item.username == email)[0];
         console.log(user)
         let password = document.getElementById("password").value
+        let rol = document.getElementById("role").value
+        user.role = rol; 
         user.password = password
         axios.post('https://api-proyect.herokuapp.com/updateUser', user, {
             headers: {
@@ -222,6 +225,15 @@ class UserManaging extends Component {
                                     value={this.state.password}
                                 // onChange={this.handlePasswordChange}
                                 />
+                            </div>
+                            <div className="form-group">
+                                <label>Rol</label>
+                                <select name="cars" className="form-control inlineDisplay" id="role">
+                                    <option value="Admin">Administrador</option>
+                                    <option value="Filler">Resolutor</option>
+                                    <option value="Validator">Validador</option>
+                                    
+                                </select>
                             </div>
                             <div className="App">
                                 <button
