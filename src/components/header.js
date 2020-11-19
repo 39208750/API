@@ -25,7 +25,7 @@ export default class home extends Component {
               <li className="nav-item">
                 <Link className="nav-link" to={{pathname:"/Home",user:this.state.user}}>Inicio</Link>
               </li>
-              {this.state.user && this.state.user.rol === "Admin" ?
+              {this.state.user && this.state.user.role === "Admin" ?
               (
                 <li className="nav-item">
                   <Link className="nav-link" to={{pathname:"/AdministrarUsuarios", user: this.state.user}}>Gestionar Usuarios</Link>
