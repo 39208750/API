@@ -5,7 +5,7 @@ Para el Observatorio PYME se participará en el proceso de auditoria de pequeña
 
 ## ¿Para quién está pensada esta solución?
 ---
-Para toda persona que pertenezca al Observatorio que desempeñe el rol de validador o bien analista de encuesta, quienes podrán contar con las encuestas recibidas de las PYME's para luego revisarlas, validarlas, escribir comentarios y demás.
+Para toda persona que pertenezca al Observatorio que desempeñe el rol de validador o bien analista (Filler) de encuesta, quienes podrán contar con las encuestas recibidas de las PYME's para luego revisarlas, validarlas, escribir comentarios y demás.
 
 ## Instalación
 ---
@@ -24,39 +24,50 @@ Estos diseños se pueden ver en: https://www.figma.com/file/mwWjJyMfzCLbTrls4n8i
 
 ## Autenticación
 
-- ### Registro de un nuevo usuario.  
-  Para registrar un nuevo usuario, debemos presionar 'Solicitar cuenta nueva' en la pantala de LogIn y completar los datos solicitados.
-
-  ![Registro](/API/images/login.png)
-
-
 - ### Inicio de sesión de un usuario registrado.
   Desde la pantalla de logIn se nos solicitará el Correo Electronico y Contraseña. Luego de completar tales campos debemos presionar en "Ingresar" para iniciar sesión.
 
-  ![Login](/API/images/login.png)
+  ![Login](images/login.png)
 
 ---
-## Inicio
+## Roles
 
-- ### Ver un dashboard con los principales gráficos.    
-  En el home podremos encontrar una serie de gráficos que nos indican:
-  - Monto gastado por mes en pesos, según tarjeta de credito+debito y por transferencia bancaria.
-  - Monto gastado por mes en dolares, según tarjeta de credito+debito y por transferencia bancaria.
-  - Los saldos en nuestras cuentas bancarias.
-  - Desvío presupuestal en pesos.
+- ### Vista de Aministrador.    
+  Este rol posee permisos para realizar Alta, Baja y Modificacion de los Usuarios que cumplan la funcion de Validador o Filler asi como tambien Visualizar las encuestas de cada una de las empresas.
+  Desde el Home del Administrador se podrá:
+  - Visualizar las empresas y sus encuestas 
+  - Buscar una empresa por su correo electronico.
+  - Buscar una encuesta por su nombre
+  - Acceder al menu de Gestion de Usuarios para dar de alta un nuevo usuario, una baja de usuario existente y por ultimo modificacion en el Rol y/o correo electronico de un usuario.
 
-   ![Dashboard2](/assets/pantallas/dashboard1.jpg)
-
-   ![Dashboard2](/assets/pantallas/dashboard2.jpg)
-
+  #### Home Administrador
+  ![Home Administrador](images/Home%20Admin.png)
 
 
-- ### Ver todas las herramientas de la aplicación.
+  #### Home Gestion Usuarios 
+  ![Home Gestion Usuarios](images/Home%20Gestion%20Usuarios.png)
+
+
+- ### Vista de Validador
+    Este rol puede visualizar cada una de las encuestas que poseen las empresas listadas. Ya que su actividad consiste en aprobar las encuestas completadas que fueron revisadas previamente por el analista (o Filler), podrá aprobar la encuesta en caso que todos los campos estén acorde a lo esperado o bien realizar comentarios sobre uno/varios campos que necesitan una revision, asi como tambien dejar un comentario general.
+
+  #### Home Validador
+    ![Home Validador](images/Home%20Validador.png)
+    
+  #### Vista Encuesta a Validar
+    ![Vista Encuesta a Validar](images/Vista%20encuesta%20a%20validar.png)
+
+  #### Aprobar Encuesta
+    ![Aprobar Encuesta](images/Aprobar%20Encuesta.png)
+
+
+- ### Vista de Filler
     En cualquier momento, el usuario puede deslizar desde el borde izquierdo hacia el derecho para ver el menu hamburguesa.
     - La contraseña ingresada debe tener almenos 8 caracteres.
     - El usuario ingresado debe tener almenos 6 caracteres.
 
     ![Menu Hamburguesa](/assets/pantallas/hamburguesa.jpg)
+
 ---
 ## Ingresos
 
