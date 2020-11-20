@@ -9,16 +9,17 @@ Para toda persona que pertenezca al Observatorio que desempeñe el rol de valida
 
 ## Instalación
 ---
-Para instalar este proyecto en su Visual Studio Code, debe escribir sobre una linea de comando lo siguiente:
-npm install
+Pasos para la instalación
 
-Una vez finalizado la descarga de archivos correr el siguiente comando:
-npm start
+1) Abrir una terminal (CMD, PowerShell, o Bash)
+2) Dirigirse a la ubicación en donde se alojará el proyecto
+3) Correr el siguiente comando: 'git clone https://github.com/39208750/API.git '. Esto descargará el proyecto de GitHub a la ubicación seleccionada.
+4) Abrir Visual Studio Code
+5) Abrir el proyecto
+6) Abrir una nueva terminal de VS Code. Para eso, en la parte superior del editor: 'Terminal -> new terminal'
+7) Corra el siguiente comando: 'npm install'. Esto instalará todos los módulos y dependencias requeridas para correr el proyecto de forma local.
+8) Corra el siguiente comando: 'npm start'. Esto iniciará el proyecto, abriendo una ventana de su último buscador utilizado.
 
-## Diseño UX/UI
----
-La primer etapa del proyecto, luego del relevamiento de la información, fue diseñar la aplicación en un programa que nos permita trabajar de manera colaborativa y plasmar el UX/UI que iba a tener la aplicación.
-Estos diseños se pueden ver en: https://www.figma.com/file/mwWjJyMfzCLbTrls4n8iPA/App-Distribuidas?node-id=0%3A1
 
 # Casos de usos.
 
@@ -35,10 +36,10 @@ Estos diseños se pueden ver en: https://www.figma.com/file/mwWjJyMfzCLbTrls4n8i
 - ### Vista de Aministrador.    
   Este rol posee permisos para realizar Alta, Baja y Modificacion de los Usuarios que cumplan la funcion de Validador o Filler asi como tambien Visualizar las encuestas de cada una de las empresas.
   Desde el Home del Administrador se podrá:
-  - Visualizar las empresas y sus encuestas 
-  - Buscar una empresa por su correo electronico.
-  - Buscar una encuesta por su nombre
-  - Acceder al menu de Gestion de Usuarios para dar de alta un nuevo usuario, una baja de usuario existente y por ultimo modificacion en el Rol y/o correo electronico de un usuario.
+  1) Visualizar las empresas y sus encuestas 
+  2) Buscar una empresa por su correo electronico.
+  3) Buscar una encuesta por su nombre
+  4) Acceder al menu de Gestion de Usuarios para dar de alta un nuevo usuario, una baja de usuario existente y por ultimo modificacion en el Rol y/o correo electronico de un usuario.
 
   #### Home Administrador
   ![Home Administrador](images/Home%20Admin.png)
@@ -46,6 +47,21 @@ Estos diseños se pueden ver en: https://www.figma.com/file/mwWjJyMfzCLbTrls4n8i
 
   #### Home Gestion Usuarios 
   ![Home Gestion Usuarios](images/Home%20Gestion%20Usuarios.png)
+
+
+- ### Vista de Filler
+    Tal rol se encarga de recibir una encuesta completada por una empresa y verificar que las mismas cuenten con sus respuestas acorde a las preguntas designadas. Sobre cada pregunta habrá un boton que le permitirá a este rol indicar si la respuesta esta conforme o no a la pregunta.
+    Si el Filler encuentra las respuestas de manera acorde, podrá enviar la encuesta para validar. En caso contrario completará la/s preguntas que deben revisarle y solicitará una revisión.
+
+  #### Home Filler
+  ![Home Filler](images/Home%20Filler.png)
+
+  #### Filler Recibiendo revision del Validador
+  ![Comentario para el Filler](images/Comentario%20recibido%20visto%20desde%20Filler.png)
+
+  #### Filler Agregando Respuesta
+  ![Respuesta Filler](images/Resp%20del%20Filler.png)
+  
 
 
 - ### Vista de Validador
@@ -60,13 +76,11 @@ Estos diseños se pueden ver en: https://www.figma.com/file/mwWjJyMfzCLbTrls4n8i
   #### Aprobar Encuesta
     ![Aprobar Encuesta](images/Aprobar%20Encuesta.png)
 
+  #### Enviar Comentarios al Filler
+    ![Envio Comentarios](images/Comentario%20desde%20Validador.png)
 
-- ### Vista de Filler
-    En cualquier momento, el usuario puede deslizar desde el borde izquierdo hacia el derecho para ver el menu hamburguesa.
-    - La contraseña ingresada debe tener almenos 8 caracteres.
-    - El usuario ingresado debe tener almenos 6 caracteres.
-
-    ![Menu Hamburguesa](/assets/pantallas/hamburguesa.jpg)
+  #### Respuesta del Filler al Validador
+  ![Respuesta del Filler al Validador](images/Respuesta%20llegada%20al%20aprobador.png)
 
 ---
 ## Ingresos
