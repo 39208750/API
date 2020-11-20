@@ -106,11 +106,16 @@ class Home extends Component {
   }
 
   render() {
+    if(this.props.location.state == null) {
+      return (window.location = "/")
+  }
     const { user } = this.props.location.state
+
     if (this.state.rows.length == 0) {
       this.getSurveys()
     }
     return (
+     
       <div>
         <div>
           <Header login={false} user={user} {...this.props}/>

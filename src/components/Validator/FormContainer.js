@@ -17,7 +17,9 @@ class FormContainer extends Component {
         this.fileInput = React.createRef();
     }
     render() {
-        console.log(this.props.user)
+        if(this.props.location.state == null) {
+            return (window.location = "/")
+        }
         return (
             <Container className="centerContentMainData col-md-8" style={{ maxWidth: 984 }}  >
                 {this.props.survey.questions.map((question, index) => {

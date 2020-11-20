@@ -16,6 +16,7 @@ export default class home extends Component {
   render() {
 
     return (
+      
       <nav className="navbar navbar-expand-lg navbar-light">
         
           <div class="navbar-brand">
@@ -27,7 +28,10 @@ export default class home extends Component {
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">            
             <ul className="nav navbar-nav ml-auto" /*style={{ display: !this.props.login ? 'inline-flex' : 'none' }}*/>
               <li className="nav-item active">
+              {this.state.user != null ?
+                (
                 <Link className="nav-link" to={{pathname:"/Home", state: { user: this.state.user }}}>Inicio</Link>
+                ) : (<p></p>)}
               </li>
               {this.state.user && this.state.user.role === "Admin" ?
                 (

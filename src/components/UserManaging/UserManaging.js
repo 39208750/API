@@ -72,6 +72,7 @@ class UserManaging extends Component {
         document.getElementById("type").textContent = type
         document.getElementById("email").value = user.username != null ? user.username : null
         document.getElementById("password").value = user.password != null ? user.password : null
+        document.getElementById("role").disabled = false
         if (type === "Eliminar") {
             document.getElementById("password").disabled = true
             document.getElementById("email").disabled = true
@@ -79,7 +80,7 @@ class UserManaging extends Component {
 
         } else if (type === "Modificar") {
             document.getElementById("password").disabled = false
-            document.getElementById("email").disabled = true
+            document.getElementById("email").disabled = true            
 
         } else if (type === "Agregar") {
             document.getElementById("password").disabled = false

@@ -12,8 +12,11 @@ class Validator extends Component {
         }
     }
     render() {
-        console.log(this.props.location.state.user)
+        if(this.props.location.state == null) {
+            return (window.location = "/")
+        }
         return (
+
             <div>
                 <div>
                     <Header login={false} user={this.props.location.state.user} {...this.props}/>
