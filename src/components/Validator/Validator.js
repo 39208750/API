@@ -12,15 +12,15 @@ class Validator extends Component {
         }
     }
     render() {
-        console.log(this.props.location.state.survey)
+        console.log(this.props.location.state.user)
         return (
             <div>
                 <div>
-                    <Header login={false} user={this.props.location.state.user} />
+                    <Header login={false} user={this.props.location.state.user} {...this.props}/>
                 </div>
                 <MainData empresaName={this.props.location.state.survey.company} encuestaName={this.props.location.state.survey.name} />
                 <div>
-                    <FormContainer survey={this.props.location.state.survey} user={this.props.location.state.user} />
+                    <FormContainer survey={this.props.location.state.survey} user={this.props.location.state.user} {...this.props}/>
                 </div>
             </div>
         );

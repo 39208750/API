@@ -16,7 +16,7 @@ class TableData extends Component {
         this.state = {
             cols: props.cols,
             rows: props.rows,
-            user:props.user
+            user: props.user
         }
     }
     updateState(rows) {
@@ -30,9 +30,15 @@ class TableData extends Component {
         this.props.history.push({
             pathname: '/Form',
             state: { user: this.props.user, survey: row }
-          })
-    } 
+        })
+    }
     render() {
+        let variable;
+        if (this.state.rows.length == 0) {
+            variable = this.props.rows;
+        } else {
+            variable = this.state.rows
+        }
         return (
             <TableContainer component={Paper} className="centerContent col-md-8">
                 <Table aria-label="simple table">
@@ -44,12 +50,12 @@ class TableData extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {this.props.rows.map((row) => (
-                            <TableRow key={row.company+"-"+row.name}>
+                        {variable.map((row) => (
+                            <TableRow key={row.company + "-" + row.name}>
                                 <TableCell align="center">{row.company}</TableCell>
                                 <TableCell align="center">{row.name}</TableCell>
                                 <TableCell align="center">
-                                        <Button variant="primary" onClick={() => { this.redirect(row) }}>Visualizar</Button>
+                                    <Button variant="primary" onClick={() => { this.redirect(row) }}>Visualizar</Button>
                                 </TableCell>
                             </TableRow>
                         ))}

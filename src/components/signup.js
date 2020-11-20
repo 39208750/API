@@ -6,7 +6,7 @@ export default class SignUp extends Component {
         return (
             <div>
                 <div>
-                    <Header login={true} />
+                    <Header login={true} {...this.props}/>
                 </div>
                 <form>
                     <div className="centerComponent">

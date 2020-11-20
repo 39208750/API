@@ -94,9 +94,6 @@ export default class Login extends Component {
                                                 Ingresar
                                             </button>
                                         </Link>
-                                        <p className="forgot-password text-right">
-                                            <a href="#">Solicitar cuenta nueva</a>
-                                        </p>
                                     </div>
                                 </div>
                             </div>

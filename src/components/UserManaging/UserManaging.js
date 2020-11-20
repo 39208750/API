@@ -12,7 +12,8 @@ class UserManaging extends Component {
             cols: ['Email', 'Rol'],
             rows: [],
             rowsToShow: [],
-            actualUser: {}
+            actualUser: {},
+            usernames : []
         }
     }
 
@@ -32,26 +33,35 @@ class UserManaging extends Component {
             }
         }
         ).then(response => {
-            console.log('RESPONSE', response.data.data)
+            let finalResponse = []
+            let userNames = []
+            response.data.data.map((data) =>{
+                if(this.props.location.state.user._id != data._id) {
+                    finalResponse.push(data)
+                    userNames.push(data.username)
+                }
+            })
             this.setState({
-                rows: response.data.data,
-                rowsToShow: response.data.data
+                rows: finalResponse,
+                rowsToShow: finalResponse,
+                usernames : userNames
             })
         }).catch(err => alert('Username y Password Invalido'))
     }
 
     filterTable(usuarioData) {
         this.state.rowsToShow = [];
-
+        console.log(usuarioData)
         if (usuarioData == null) {
             this.state.rowsToShow = this.state.rows;
             this.HistoricTable.updateState(this.state.rowsToShow);
             return;
         } else {
             let filterUsers = this.state.rows.filter(item => item.username == usuarioData);
+
             this.state.rowsToShow = filterUsers
         }
-
+        console.log(this.state.rowsToShow)
 
         this.HistoricTable.updateState(this.state.rowsToShow);
     }
@@ -164,13 +174,15 @@ class UserManaging extends Component {
     }
 
     render() {
+        const { user } = this.props.location.state
+
         if (this.state.rows.length == 0) {
             this.getUsers()
         }
         return (
             <div>
                 <div>
-                    <Header login={false} user={null} />
+                    <Header login={false} user={user} {...this.props}/>
                 </div>
                 <div className="row centerContent marginTopBottom20">
                     <div className="col-md-8 filter">
@@ -178,7 +190,7 @@ class UserManaging extends Component {
                             <div className="col-md-8 bottomMargin5">
                                 <Dropdown
                                     type="Email"
-                                    data={this.state.rows}
+                                    data={this.state.usernames}
                                     label="Buscar por Email"
                                     onChangeValue={this.onChangeDropDownEmail.bind(this)}
                                 />

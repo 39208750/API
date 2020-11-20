@@ -19,6 +19,7 @@ class UsersTable extends Component {
         }
     }
     updateState(rows) {
+        console.log(rows)
         this.setState(
             {
                 rows: rows
@@ -31,6 +32,12 @@ class UsersTable extends Component {
     }
 
     render() {
+        let variable;
+        if(this.state.rows.length == 0){
+            variable = this.props.rows;
+        } else {
+            variable = this.state.rows
+        }
         return (
             <TableContainer component={Paper} className="centerContent col-md-8">
                 <Table aria-label="simple table">
@@ -43,7 +50,7 @@ class UsersTable extends Component {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {this.props.rows.map((row) => (
+                        {variable.map((row) => (
                             <TableRow key={row.username}>
                                 <TableCell align="center">{row.username}</TableCell>
                                 <TableCell align="center" >{row.role}</TableCell>

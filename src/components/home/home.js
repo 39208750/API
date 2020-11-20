@@ -12,6 +12,8 @@ class Home extends Component {
       cols: ['Empresa', 'Encuesta'],
       rows: [],
       rowsToShow: [],
+      company: [],
+      survey: []
     }
   }
 
@@ -39,10 +41,37 @@ class Home extends Component {
     }
     ).then(response => {
       console.log('RESPONSE', response.data.data)
+      let responseShow = []
+      let companies = []
+      let surveys = []
+      response.data.data.map((data) => {
+        if (data.status != "APPROVED") {
+          if (this.props.location.state.user.role == "Filler" && data.status == "COMMENTED") {
+            responseShow.push(data)
+            companies.push(data.company)
+            surveys.push(data.name)
+          }
 
+          if (this.props.location.state.user.role == "Validator" && data.status == "ANSWERED") {
+            responseShow.push(data)
+            companies.push(data.company)
+            surveys.push(data.name)
+          }
+
+          if(this.props.location.state.user.role == "Admin"){
+            responseShow.push(data)
+            companies.push(data.company)
+            surveys.push(data.name)
+            
+          }
+        }
+      })
       this.setState({
-        rows: response.data.data,
-        rowsToShow: response.data.data
+        rows: responseShow,
+        rowsToShow: responseShow,
+        company: companies,
+        survey: surveys
+
       })
     }).catch(err => alert('ERROR AL TRAER ENCUESTA'))
   }
@@ -58,25 +87,21 @@ class Home extends Component {
 
     for (var i = 0; i < this.state.rows.length; i++) {
       if (encuestaData != null && empresaData != null) {
-        if (this.state.rows[i].Empresa == empresaData && this.state.rows[i].Encuesta == encuestaData) {
+        if (this.state.rows[i].company == empresaData && this.state.rows[i].name == encuestaData) {
           this.state.rowsToShow.push(
-            {
-              Empresa: this.state.rows[i].Empresa,
-              Encuesta: this.state.rows[i].Encuesta
-            }
+            this.state.rows[i]
           )
         }
       } else {
-        if (this.state.rows[i].Empresa == empresaData || this.state.rows[i].Encuesta == encuestaData) {
+        if (this.state.rows[i].company == empresaData || this.state.rows[i].name == encuestaData) {
           this.state.rowsToShow.push(
-            {
-              Empresa: this.state.rows[i].Empresa,
-              Encuesta: this.state.rows[i].Encuesta
-            }
+            this.state.rows[i]
+
           )
         }
       }
     }
+    console.log(this.state.rowsToShow)
     this.HistoricTable.updateState(this.state.rowsToShow);
   }
 
@@ -88,7 +113,7 @@ class Home extends Component {
     return (
       <div>
         <div>
-          <Header login={false} user={user} />
+          <Header login={false} user={user} {...this.props}/>
         </div>
         <div className="row centerContent marginTopBottom20">
           <div className="col-md-8 filter">
@@ -96,7 +121,7 @@ class Home extends Component {
               <div className="col-md-4 bottomMargin5">
                 <Dropdown
                   type="Empresa"
-                  data={this.state.dataEmpresa}
+                  data={this.state.company}
                   label="Buscar por Empresa"
                   onChangeValue={this.onChangeDropDownEmpresa.bind(this)}
                 />
@@ -104,7 +129,7 @@ class Home extends Component {
               <div className="col-md-4 bottomMargin5">
                 <Dropdown
                   type="Encuesta"
-                  data={this.state.dataEncuesta}
+                  data={this.state.survey}
                   label="Buscar por Encuesta"
                   onChangeValue={this.onChangeDropDownEncuesta.bind(this)}
                 />

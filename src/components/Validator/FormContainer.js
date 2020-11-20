@@ -26,7 +26,7 @@ class FormContainer extends Component {
                 })}
                 {this.renderComment(this.props.user.role)}
                 <Grid container direction="row" justify="flex-end" alignItems="flex-end" style={{ marginTop: 20, marginBottom: 20 }}>
-                    {this.props.user.role == "Validator" || this.props.user.role == "Admin" ? (
+                    {(this.props.user.role == "Validator" || this.props.user.role == "Admin") && this.props.survey.status == "ANSWERED" ? (
                         <div>
                             <Button
                                 variant="contained"
@@ -46,13 +46,13 @@ class FormContainer extends Component {
                             </Button>
                         </div>
                     ) : (<div />)}
-                    {this.props.user.role == "Filler" || this.props.user.role == "Admin" ? (
+                    {(this.props.user.role == "Filler" || this.props.user.role == "Admin") && this.props.survey.status == "COMMENTED" ? (
                         <Button
                             variant="contained"
                             id="sendAnswers"
                             color="primary"
                             onClick={() => { this.saveData("answer") }}
-                            style={{ marginLeft: 20 }}>
+                            style={{ marginLeft: 20 , display:"none"}}>
                             Enviar Nuevas Respuestas
                         </Button>
                     ) : (<div />)}
@@ -73,7 +73,7 @@ class FormContainer extends Component {
                 <Container className="row" id={index} >
                     {container}
                 </Container>
-                {user.role == "Validator" || user.role == "Admin" ? (
+                {(user.role == "Validator" || user.role == "Admin") && this.props.survey.status == "ANSWERED" ? (
                     <Grid container direction="row" justify="flex-end" alignItems="flex-end" style={{ marginTop: 20 }}>
                         <Button
                             variant="contained"
@@ -97,7 +97,7 @@ class FormContainer extends Component {
                     </Button>
                     </Grid>
                 ) : (<div />)}
-                {(user.role == "Filler" || user.role == "Admin") ? (
+                {(user.role == "Filler" || user.role == "Admin") && this.props.survey.status == "COMMENTED" && data.answer[data.answer.length - 1].comment.length > 0 ? (
                     <Grid container direction="row" justify="flex-end" alignItems="flex-end" style={{ marginTop: 20 }}>
                         <Button
                             variant="contained"
@@ -137,7 +137,10 @@ class FormContainer extends Component {
                     row.answer[row.answer.length - 1].comment.push(commentValue)
                 }
             })
-
+            if (document.getElementById("generalComment") != null) {
+                survey.generalComment = document.getElementById("generalComment").value
+            }
+            survey.status = "COMMENTED";
         } else if (type == "answer") {
             survey.questions.map((row, index) => {
                 let answerValue;
@@ -148,16 +151,15 @@ class FormContainer extends Component {
                     row.answer.push({ label: answerValue, comment: [] })
                 }
             })
+            survey.status = "ANSWERED";
         } else if (type == "approve") {
             survey.status = "APPROVED";
         }
-
-
-
+        this.updateSurvey(survey)
     }
     updateSurvey(body) {
 
-        axios.post('https://api-proyect.herokuapp.com/updateSurvey',body, {
+        axios.post('https://api-proyect.herokuapp.com/updateSurvey', body, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
@@ -166,14 +168,26 @@ class FormContainer extends Component {
             }
         }
         ).then(response => {
-            console.log('RESPONSE', response.data.data)
-
-        }).catch(err => alert('ERROR ACTUALIZAR ENCUESTA'))
+            console.log('RESPONSE', response)
+            this.props.history.push({
+                pathname: '/Home',
+                state: { user: this.state.user }
+            })
+        }).catch(err => alert(err))
     }
     renderComment(role) {
-        if (role === "Validator") {
+        if ((role === "Validator" || role == "Admin") && this.state.survey.status == "ANSWERED") {
             return (
-                <TextareaAutosize aria-label="empty textarea" placeholder="Comentario General" className="textInput col-md-12 textArea" rowsMin={4} style={{ borderRadius: 20 }} />
+                <TextareaAutosize
+                    aria-label="empty textarea"
+                    placeholder="Comentario General"
+                    className="textInput col-md-12 textArea"
+                    id="generalComment"
+                    rowsMin={4}
+                    style={{ borderRadius: 20 }}
+                    defaultValue={this.state.survey.generalComment}
+                />
+
             )
         }
     }
@@ -246,12 +260,19 @@ class FormContainer extends Component {
             default: break;
         }
 
-        if (this.state.user.role === "Validator" && commentsAmount > 0) {
+        if ((this.state.user.role === "Validator" || this.state.user.role === "Admin") && this.state.survey.status == "ANSWERED" && commentsAmount > 0) {
             document.getElementById("sendCommentsButton").style.display = "block";
             document.getElementById("approveButton").style.display = "none"
-        } else if (this.state.user.role === "Validator" && commentsAmount <= 0) {
+        } else if ((this.state.user.role === "Validator" || this.state.user.role === "Admin") && this.state.survey.status == "ANSWERED" && commentsAmount <= 0) {
             document.getElementById("sendCommentsButton").style.display = "none";
             document.getElementById("approveButton").style.display = "block"
+        }
+        console.log(commentsAmount)
+        if ((this.state.user.role === "Filler" || this.state.user.role === "Admin") && this.state.survey.status == "COMMENTED" && commentsAmount > 0) {
+            document.getElementById("sendAnswers").style.display = "block"
+        } else if ((this.state.user.role === "Filler" || this.state.user.role === "Admin") && this.state.survey.status == "COMMENTED" && commentsAmount == 0) {
+            document.getElementById("sendAnswers").style.display = "none";
+
         }
     }
 }
