@@ -68,12 +68,14 @@ class UserManaging extends Component {
 
     showModal(type, user) {
         document.getElementById("modifyPanel").style.display = "block"
+        document.getElementById("role").value= user.role
         document.getElementById("type").textContent = type
         document.getElementById("email").value = user.username != null ? user.username : null
         document.getElementById("password").value = user.password != null ? user.password : null
         if (type === "Eliminar") {
             document.getElementById("password").disabled = true
             document.getElementById("email").disabled = true
+            document.getElementById("role").disabled = true
 
         } else if (type === "Modificar") {
             document.getElementById("password").disabled = false
