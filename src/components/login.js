@@ -16,11 +16,23 @@ export default class Login extends Component {
             email: "",
             password: "",
             url: "",
+            rememberMe: false
         };
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    }
-
+        this.handleChange = this.handleChange.bind(this);
+    };
+    componentDidMount() {
+        const rememberMe = localStorage.getItem('rememberMe') === 'true';
+        const email = rememberMe ? localStorage.getItem('email') : '';
+        this.setState({ email, rememberMe });
+    };
+    handleChange(event) {
+        const input = event.target;
+        const value = input.type === 'checkbox' ? input.checked : input.value;
+    
+        this.setState({ [input.name]: value });
+    };
     handleEmailChange(e) {
         this.setState({ email: e.target.value });
     };
@@ -46,9 +58,15 @@ export default class Login extends Component {
                 pathname: '/Home',
                 state: { user: response.data.data }
               })
+              const { email, rememberMe } = this.state;
+              if(rememberMe){
+                localStorage.setItem('rememberMe', rememberMe);
+                localStorage.setItem('email', rememberMe ? email : '');  
+              }            
         }).catch(err => alert('Username y Password Invalido'))
-    }
-    render() {
+    };
+    
+    render() {        
         return (
             <div>
                 <Header login={true} />
@@ -66,8 +84,9 @@ export default class Login extends Component {
                                             type="email"
                                             className="form-control inlineDisplay"
                                             placeholder="Ingresar correo electrónico"
-                                            value={this.state.email}
-                                            onChange={this.handleEmailChange}
+                                            value={this.state.email}                                            
+                                            onChange={this.handleChange}
+                                            name="email"
                                         />
                                     </div>
                                     <div className="form-group">
@@ -82,7 +101,7 @@ export default class Login extends Component {
                                     </div>
                                     <div className="form-group text-right">
                                         <div className="custom-control custom-checkbox">
-                                            <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                                            <input type="checkbox" name="rememberMe" checked={this.state.rememberMe} onChange={this.handleChange} className="custom-control-input" id="customCheck1" />
                                             <label className="custom-control-label" htmlFor="customCheck1">Recordarme</label>
                                         </div>
                                     </div>

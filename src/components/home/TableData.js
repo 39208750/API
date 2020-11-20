@@ -40,7 +40,7 @@ class TableData extends Component {
             variable = this.state.rows
         }
         return (
-            <TableContainer component={Paper} className="centerContent col-md-8">
+            <TableContainer component={Paper} className="centerContent col-md-8 encuestas">
                 <Table aria-label="simple table">
                     <TableHead>
                         <TableRow>

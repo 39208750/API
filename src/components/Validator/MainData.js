@@ -14,9 +14,9 @@ class MainData extends Component {
             <div className="centerContentMainData col-md-8">
                 <div className="navbar navbar-expand-lg navbar-light mainData">
                     <div className="container">
-                        <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+                        
                             <h4 className="title">Validar Encuesta</h4>
-                            <ul className="navbar-nav ml-auto" style={{ flexDirection: 'column' }}>
+                            <ul className="navbar-nav ml-auto" style={{ flexDirection: 'column'}}>
                                 <li className="nav-item">
                                     <b>Encuesta:</b> {this.props.encuestaName}
                                 </li>
@@ -24,7 +24,7 @@ class MainData extends Component {
                                     <b>Empresa:</b> {this.props.empresaName}
                                 </li>
                             </ul>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

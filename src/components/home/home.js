@@ -115,7 +115,7 @@ class Home extends Component {
         <div>
           <Header login={false} user={user} {...this.props}/>
         </div>
-        <div className="row centerContent marginTopBottom20">
+        <div className="row centerContent marginTopBottom20 filter-container">
           <div className="col-md-8 filter">
             <div className="row centerContent">
               <div className="col-md-4 bottomMargin5">
@@ -137,7 +137,7 @@ class Home extends Component {
             </div>
           </div>
         </div>
-        <div className="row centerContent">
+        <div className="row centerContent encuestas-container">
           <TableData
             ref={(table) => { this.HistoricTable = table }}
             cols={this.state.cols}
