@@ -1,6 +1,6 @@
-# TPO - Validar Encuesta
+# Validar Encuestas
 
-Para el Observatorio PYME se participará en el proceso de auditoria de pequeñas y medianas empresas poniendo foco en la validacion de las encuestas que se envian a tales empresas.
+Para el Observatorio PYME, se participará en el proceso de auditoria de pequeñas y medianas empresas, poniendo foco en la validacion de las encuestas que se envian a tales empresas.
 
 
 ## ¿Para quién está pensada esta solución?
@@ -34,13 +34,14 @@ Pasos para la instalación
 ## Roles
 
 - ### Vista de Aministrador.    
-  Este rol posee permisos para realizar Alta, Baja y Modificacion de los Usuarios que cumplan la funcion de Validador o Filler asi como tambien Visualizar las encuestas de cada una de las empresas.
+  Este rol posee permisos para realizar Alta, Baja y Modificacion de los Usuarios que cumplan la funcion de Validador o Filler, asi como tambien Visualizar las encuestas de cada una de las empresas.
   Desde el Home del Administrador se podrá:
   1) Visualizar las empresas y sus encuestas 
   2) Buscar una empresa por su correo electronico.
   3) Buscar una encuesta por su nombre
-  4) Acceder al menu de Gestion de Usuarios para dar de alta un nuevo usuario, una baja de usuario existente y por ultimo modificacion en el Rol y/o correo electronico de un usuario.
+  4) Acceder al menu de Gestion de Usuarios para dar de alta un nuevo usuario, una baja de usuario existente, o una modificacion en el Rol y/o correo electronico de un usuario.
   5) Comentar y/o aprobar encuestas
+  6) Responder encuestas comentadas
 
   #### Home Administrador
   ![Home Administrador](images/Home%20Admin.png)
@@ -57,7 +58,7 @@ Pasos para la instalación
 
 
 - ### Vista de Filler
-    Tal rol se encarga de recibir una encuesta completada por una empresa y verificar que las mismas cuenten con sus respuestas acorde a las preguntas designadas. Sobre cada pregunta habrá un boton que le permitirá a este rol indicar si la respuesta esta conforme o no a la pregunta.
+    Tal rol se encarga de recibir una encuesta que fue comentada por un validador en alguna o varias de sus preguntas, y verificar que las mismas cuenten con sus respuestas acorde a las preguntas designadas. Sobre cada pregunta habrá un boton que le permitirá a este rol indicar si la respuesta esta conforme o no a la pregunta.
     Si el Filler encuentra las respuestas de manera acorde, podrá enviar la encuesta para validar. En caso contrario completará la/s preguntas que deben revisarse y solicitará una revisión.
 
   #### Home Filler
@@ -72,7 +73,7 @@ Pasos para la instalación
 
 
 - ### Vista de Validador
-    Este rol puede visualizar cada una de las encuestas que poseen las empresas listadas. Ya que su actividad consiste en aprobar las encuestas completadas que fueron revisadas previamente por el analista (o Filler), podrá aprobar la encuesta en caso que todos los campos estén acorde a lo esperado o bien realizar comentarios sobre uno/varios campos que necesitan una revision, asi como tambien dejar un comentario general.
+    Este rol puede visualizar cada una de las encuestas que poseen las empresas listadas. Ya que su actividad consiste en aprobar las encuestas recibidas, podrá aprobar la encuesta en caso que todos los campos estén acorde a lo esperado o bien realizar comentarios sobre uno/varios campos que necesitan una revision, asi como tambien dejar un comentario general.
 
   #### Home Validador
     ![Home Validador](images/Home%20Validador.png)

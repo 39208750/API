@@ -174,6 +174,9 @@ class UserManaging extends Component {
     }
 
     render() {
+        if(this.props.location.state == null) {
+            return (window.location = "/")
+        }
         const { user } = this.props.location.state
 
         if (this.state.rows.length == 0) {

@@ -36,7 +36,10 @@ export default class home extends Component {
                   </li>
                 ) : (<p></p>)}
               <li className="nav-item">
-                <Link className="nav-link" to={{ pathname: "/"}}>Cerrar Sesion</Link>
+              {this.state.user != null ?
+                (
+                  <Link className="nav-link" to={{ pathname: "/"}}>Cerrar Sesión</Link>
+                ) : (<p></p>)}
               </li>
             </ul>
           </div>
