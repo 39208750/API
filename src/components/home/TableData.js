@@ -34,7 +34,7 @@ class TableData extends Component {
     } 
     render() {
         return (
-            <TableContainer component={Paper} className="centerContent col-md-8">
+            <TableContainer component={Paper} className="centerContent col-md-8 encuestas">
                 <Table aria-label="simple table">
                     <TableHead>
                         <TableRow>

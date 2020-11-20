@@ -21,12 +21,12 @@ export default class Login extends Component {
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
-    }
+    };
     componentDidMount() {
         const rememberMe = localStorage.getItem('rememberMe') === 'true';
         const email = rememberMe ? localStorage.getItem('email') : '';
         this.setState({ email, rememberMe });
-      }
+    };
     handleChange(event) {
         const input = event.target;
         const value = input.type === 'checkbox' ? input.checked : input.value;
@@ -64,7 +64,7 @@ export default class Login extends Component {
                 localStorage.setItem('email', rememberMe ? email : '');  
               }            
         }).catch(err => alert('Username y Password Invalido'))
-    }
+    };
     
     render() {        
         return (

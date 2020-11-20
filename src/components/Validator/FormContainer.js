@@ -123,7 +123,9 @@ class FormContainer extends Component {
             </Container>
         );
     }
-
+    addFile(buttonId){
+        document.getElementById(buttonId).click();
+    }
     saveData(type) {
         let survey = this.state.survey;
 
@@ -223,7 +225,17 @@ class FormContainer extends Component {
 
                             <Container>
                                 <div>
-                                    <input type='file' ref={this.fileInput} />
+                                    <input id={'FileInput'+idValues[1]} className='FileInput' type='file' ref={this.fileInput} hidden/>
+                                    <Button
+                                        variant="contained"
+                                        id='addFile'
+                                        color="primary"
+                                        onClick={() => { this.addFile('FileInput'+idValues[1])}}
+                                        className="formButton"
+                                        style={{ marginRight: 20, marginTop: -4, marginBottom: 4 }}
+                                    >
+                                        Agregar Respuesta
+                                            </Button>
                                 </div>
                             </Container>
                         )) : (
