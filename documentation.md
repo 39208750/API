@@ -40,10 +40,10 @@ Pasos para la instalación
   2) Buscar una empresa por su correo electronico.
   3) Buscar una encuesta por su nombre
   4) Acceder al menu de Gestion de Usuarios para dar de alta un nuevo usuario, una baja de usuario existente y por ultimo modificacion en el Rol y/o correo electronico de un usuario.
+  5) Comentaro y/o aprobar encuestas
 
   #### Home Administrador
   ![Home Administrador](images/Home%20Admin.png)
-
 
   #### Home Gestion Usuarios 
   ![Home Gestion Usuarios](images/Home%20Gestion%20Usuarios.png)
